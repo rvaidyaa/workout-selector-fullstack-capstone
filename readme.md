@@ -1,6 +1,6 @@
 https://workout-selector.herokuapp.com/
 
-# My Nutrition Tracker Node Capstone
+# Workout Selector Fullstack Capstone
 Fullstack capstone for the thinkful course.
 
 Workout-selector is a application that asks a few simple questions and recommends a workout that fits your needs. Then you can further customize the workout to your liking.
