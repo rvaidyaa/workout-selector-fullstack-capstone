@@ -24,14 +24,14 @@ As a visitor I would like to be able to print/pdf or email myself the workout
 
 
 
-![UI Flow handwritten draft](https://github.com/rvaidyaa/my-nutrition-tracker-node-capstone/blob/master/Wireframe/landing.jpg)
+![UI Flow handwritten draft](https://github.com/rvaidyaaworkout-selector-fullstack-capstone/blob/master/Wireframe/landing.jpg)
 
 
-![UI Flow handwritten draft](https://github.com/rvaidyaa/my-nutrition-tracker-node-capstone/blob/master/Wireframe/signup.jpg)
+![UI Flow handwritten draft](https://github.com/rvaidyaa/workout-selector-fullstack-capstone/blob/master/Wireframe/quiz.jpg)
 
-![UI Flow handwritten draft](https://github.com/rvaidyaa/my-nutrition-tracker-node-capstone/blob/master/Wireframe/mainpage.jpg)
+![UI Flow handwritten draft](https://github.com/rvaidyaa/workout-selector-fullstack-capstone/blob/master/Wireframe/result.jpg)
 
-![UI Flow handwritten draft](https://github.com/rvaidyaa/my-nutrition-tracker-node-capstone/blob/master/Wireframe/addmeal.jpg)
+![UI Flow handwritten draft](https://github.com/rvaidyaa/workout-selector-fullstack-capstone/blob/master/Wireframe/customize.jpg)
 
 
 ## Working Prototype
