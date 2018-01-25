@@ -16,18 +16,15 @@ User Stories
 
 As a visitor i would like to know what the app is about
 
+![UI Flow handwritten draft](https://github.com/rvaidyaa/workout-selector-fullstack-capstone/blob/master/Wireframe/landing.jpg)
+
 As a visitor I would like the application to guide me to a particular workout via questionaire/ quiz
+
+![UI Flow handwritten draft](https://github.com/rvaidyaa/workout-selector-fullstack-capstone/blob/master/Wireframe/quiz.jpg)
 
 As a visitor i would like to customize a workout by adding exercises or deleting exercises
 
 As a visitor I would like to be able to print/pdf or email myself the workout
-
-
-
-![UI Flow handwritten draft](https://github.com/rvaidyaaworkout-selector-fullstack-capstone/blob/master/Wireframe/landing.jpg)
-
-
-![UI Flow handwritten draft](https://github.com/rvaidyaa/workout-selector-fullstack-capstone/blob/master/Wireframe/quiz.jpg)
 
 ![UI Flow handwritten draft](https://github.com/rvaidyaa/workout-selector-fullstack-capstone/blob/master/Wireframe/result.jpg)
 
@@ -35,7 +32,7 @@ As a visitor I would like to be able to print/pdf or email myself the workout
 
 
 ## Working Prototype
-Find a working prototype with Node at http://my-nutrition-tracker-node.herokuapp.com/ .
+Find a working prototype with Node at https://workout-selector.herokuapp.com/ .
 
 
 ## Technical
