@@ -43,6 +43,7 @@ Find a working prototype with Node at https://workout-selector.herokuapp.com/ .
 * CSS3
 * JavaScript
 * jQuery
+* React
 
 ### Back End
 
@@ -62,6 +63,13 @@ Find a working prototype with Node at https://workout-selector.herokuapp.com/ .
 * User passwords are encrypted using "https://github.com/dcodeIO/bcrypt.js"
 
 ## API Documentation
+Available workouts (id exercises and url)
+
+Available exercises
+
+chosen workout takes the ID of the available workout
+
+chosen exercises
 API endpoints for the back end include:
 * POST to '/users/create' for creating a new user
 * POST to '/signin' to sign in an existing user

@@ -1,6 +1,6 @@
-const User = require('./models/users');
-const foodLog = require('./models/food-log');
-const online = require('./models/online');
+//const User = require('./models/users');
+//const foodLog = require('./models/food-log');
+//const online = require('./models/online');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config');
@@ -24,9 +24,6 @@ app.use(express.static('public'));;
 
 mongoose.Promise = global.Promise;
 
-let USER_LOGGEDIN_COOKIE = 'user-loggedin';
-
-let loggedInUser = "";
 
 // ---------------- RUN/CLOSE SERVER -----------------------------------------------------
 let server = undefined;
@@ -63,61 +60,6 @@ function closeServer() {
         });
     }));
 }
-
-
-// external API call
-const getFromNutritionix = function (searchTerm) {
-    let emitter = new events.EventEmitter();
-    //console.log("inside getFromActive function");
-    unirest.get("https://trackapi.nutritionix.com/v2/search/instant?query=" + searchTerm)
-        .header("Accept", "application/json")
-        .header("Content-Type", "application/json")
-        .header("x-app-id", "91d999d6")
-        .header("x-app-key", "90c9640d86c64ef7df97b0c16d73a27c")
-        .end(function (result) {
-        //            console.log(result.status, result.headers, result.body);
-        //success scenario
-        if (result.ok) {
-            emitter.emit('end', result.body);
-        }
-        //failure scenario
-        else {
-            emitter.emit('error', result.code);
-        }
-    });
-
-    return emitter;
-};
-//GET https://trackapi.nutritionix.com/v2/search/item?nix_item_id=513fc9e73fe3ffd40300109f
-
-//HEADERS required:
-//
-//x-app-id
-//x-app-key
-//Response body:
-const getFromNutritionixNutrition = function (searchTerm) {
-    let emitter = new events.EventEmitter();
-    //console.log("inside getFromActive function");
-    // https://trackapi.nutritionix.com/v2/search/item?nix_item_id=513fc9e73fe3ffd40300109f
-    unirest.get("https://trackapi.nutritionix.com/v2/search/item?nix_item_id=" + searchTerm)
-        .header("Accept", "application/json")
-        .header("Content-Type", "application/json")
-        .header("x-app-id", "91d999d6")
-        .header("x-app-key", "90c9640d86c64ef7df97b0c16d73a27c")
-        .end(function (result) {
-        //            console.log(result.status, result.headers, result.body);
-        //success scenario
-        if (result.ok) {
-            emitter.emit('end', result.body);
-        }
-        //failure scenario
-        else {
-            emitter.emit('error', result.code);
-        }
-    });
-
-    return emitter;
-};
 
 
 // ---------------USER ENDPOINTS-------------------------------------
@@ -198,17 +140,17 @@ app.get('/get-requested-food-items/', function (req, res) { //make the name more
     foodLog
         .find()
         .then(function (foodLogResults) {
-        //            console.log(foodLogResults);
-        res.json({
-            foodLogResults
-        });
-    })
+            //            console.log(foodLogResults);
+            res.json({
+                foodLogResults
+            });
+        })
         .catch(function (err) {
-        console.error(err);
-        res.status(500).json({
-            message: 'Internal server error'
+            console.error(err);
+            res.status(500).json({
+                message: 'Internal server error'
+            });
         });
-    });
 });
 
 
@@ -258,52 +200,41 @@ app.post('/users/login', function (req, res) {
     //    console.log(req.body.username, req.body.password)
     User
         .findOne({
-        username: req.body.username
-    }, function (err, items) {
-        if (err) {
-            return res.status(500).json({
-                message: "Internal server error"
-            });
-        }
-        if (!items) {
-            // bad username
-            return res.status(401).json({
-                message: "Not found!"
-            });
-        } else {
-            items.validatePassword(req.body.password, function (err, isValid) { //where does validate go to in order to do the pw checking logic
-                if (err) {
-                    console.log('There was an error validating the password.');
-                }
-                if (!isValid) {
-                    return res.status(401).json({
-                        message: "Not found"
-                    });
-                } else {
-                    let loggedInUser = req.body.username;
-                    //                        console.log(loggedInUser);
-                    return res.json(loggedInUser);
-                }
-            });
-        };
-    });
+            username: req.body.username
+        }, function (err, items) {
+            if (err) {
+                return res.status(500).json({
+                    message: "Internal server error"
+                });
+            }
+            if (!items) {
+                // bad username
+                return res.status(401).json({
+                    message: "Not found!"
+                });
+            } else {
+                items.validatePassword(req.body.password, function (err, isValid) { //where does validate go to in order to do the pw checking logic
+                    if (err) {
+                        console.log('There was an error validating the password.');
+                    }
+                    if (!isValid) {
+                        return res.status(401).json({
+                            message: "Not found"
+                        });
+                    } else {
+                        let loggedInUser = req.body.username;
+                        //                        console.log(loggedInUser);
+                        return res.json(loggedInUser);
+                    }
+                });
+            };
+        });
 });
 
 //Food Log Endpoints
 
 app.post('/food-log/food-item', (req, res) => {
-    let name = req.body.name;
-    let calories = req.body.calories;
-    let fiber = req.body.fiber;
-    let potassium = req.body.potassium;
-    let totalFat = req.body.totalFat;
-    let carbs = req.body.carbs;
-    let protein = req.body.protein;
-    let sugar = req.body.sugar;
-    let sodium = req.body.sodium;
-    let satFat = req.body.satFat;
-    let meal = "";
-    let username = req.body.username;
+
     foodLog.create({
         name,
         calories,
@@ -340,16 +271,16 @@ app.put('/allocate-item-to-meal', function (req, res) {
         if (value != "") {
             foodLog
                 .findByIdAndUpdate(value, {
-                $set: {
-                    meal: mealTime
-                }
-            }).exec().then(function (foodLog) {
-                return res.status(204).end();
-            }).catch(function (err) {
-                return res.status(500).json({
-                    message: 'Internal Server Error'
+                    $set: {
+                        meal: mealTime
+                    }
+                }).exec().then(function (foodLog) {
+                    return res.status(204).end();
+                }).catch(function (err) {
+                    return res.status(500).json({
+                        message: 'Internal Server Error'
+                    });
                 });
-            });
         }
     });
 });

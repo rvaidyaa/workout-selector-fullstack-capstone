@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Landing Page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Slabo+27px" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- b/c style css reads the font-->
+</head>
+
+<body>
+    <header class='title-header'>
+        <h1>Workout Selector</h1>
+    </header>
+    <main class="landing">
+        <div class='catch'>
+            <h2>Application Features</h2><br>
+            <span>Workout Selector helps beginner and intermidate level lifters find a workout routine that fits your needs! Fully customizable.Click the weights to start answering a series of questions that will point you towards a time tested routine that meets your needs.</span><br><br>
+            <div class="column-three">
+                <h4>Select</h4>
+                <div class='icon'><i class="fa fa-bars" aria-hidden="true"></i></div>
+                <h4>Experience Level</h4>
+            </div>
+            <div class="column-three">
+                <h4>Customize</h4>
+                <div class='icon'><i class="fa fa-cog" aria-hidden="true"></i></div>
+                <h4>Workouts</h4>
+            </div>
+            <div class="column-three">
+                <h4>Display</h4>
+                <div class='icon'><i class="fa fa-calendar-minus-o" aria-hidden="true"></i></div>
+                <h4>Plan</h4>
+            </div>
+            <div><br><input class='start-button selector' type="button" value=''></div>
+        </div>
+    </main>
+    <main class="question-one">
+        <div>
+            <form action="">
+                <div class='questions'>
+                    <h3>Describe your workout experience.</h3>
+                </div>
+                <div class="choices">
+                    <input class='user-input start-button beginner ' type="button" name="skill" value="Beginner">
+                    <input class='user-input start-button advanced ' type="button" name="skill" value="Advanced">
+
+                </div>
+            </form>
+        </div>
+    </main>
+    <main class="question-two">
+        <div class='questions'>
+            <h3>What are your workout goals?</h3>
+        </div>
+        <div class="choices">
+            <input class='user-input start-button strength' type="button" name="goal" value="Strength">
+            <input class='user-input start-button hypertrophy' type="button" name="goal" value="Hypertrophy">
+            <input class='user-input start-button conditioning' type="button" name="goal" value="Conditioning">
+
+        </div>
+    </main>
+    <main class="question-three">
+        <div class='questions'>
+            <h3>How many days a week can you dedicate to lifting?</h3>
+        </div>
+        <div class="choices">
+            <input class='user-input start-button threex' type="button" name="frequency" value="Three or Less">
+            <input class='user-input start-button fourx' type="button" name="frequency" value="Four">
+            <input class='user-input start-button fivex' type="button" name="frequency" value="Five or More"> </div>
+
+    </main>
+    <main class="results">
+        <div>
+            <h3>You Selected:</h3>
+        </div>
+        <div class='user-select'>
+            <div class='column-three-selected beginner display'>Beginner</div>
+            <div class='column-three-selected threex display'>3x</div>
+            <div class='column-three-selected strength display'>Strength</div>
+        </div>
+        <div class="recommend">
+            <h2>Stronglifts 5x5</h2>
+            <a href='www.stronglifts.com'>www.stronglifts.com</a><br>
+        </div>
+        <div class='calendar'>
+            <h3>Week 1</h3>
+            <div class="seven-cols">
+                <h3>Sun</h3>
+                <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercise">
+                    <h4></h4>
+                </div>
+            </div>
+            <div class="seven-cols">
+                <h3>Mon</h3>
+                <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercise">
+                    <h4 id='name'>Squat:</h4>
+                    <h5 id='sets'>Sets</h5>5
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+                <div class="exercise">
+                    <h4 id='name'>Bench Press:</h4>
+                    <h5 id='sets'>Sets</h5>5
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+                <div class="exercise">
+                    <h4 id='name'>Barbell Rows:</h4>
+                    <h5 id='sets'>Sets</h5>5
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="seven-cols">
+                <h3>Tue</h3>
+                <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercise">
+                    <h4></h4>
+                </div>
+            </div>
+            <div class="seven-cols">
+                <h3>Wed</h3>
+                <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercise">
+                    <h4 id='name'>Squat:</h4>
+                    <h5 id='sets'>Sets</h5>5
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+                <div class="exercise">
+                    <h4 id='name'>Overhead Press:</h4>
+                    <h5 id='sets'>Sets</h5>5
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+                <div class="exercise">
+                    <h4 id='name'>Deadlift:</h4>
+                    <h5 id='sets'>Sets</h5>1
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="seven-cols">
+                <h3>Thu</h3>
+                <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercise">
+                    <h4></h4>
+                </div>
+            </div>
+            <div class="seven-cols">
+                <h3>Fri</h3>
+                <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercise">
+                    <h4 id='name'>Squat:</h4>
+                    <h5 id='sets'>Sets</h5>5
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+                <div class="exercise">
+                    <h4 id='name'>Bench Press:</h4>
+                    <h5 id='sets'>Sets</h5>5
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+                <div class="exercise">
+                    <h4 id='name'>Barbell Rows:</h4>
+                    <h5 id='sets'>Sets</h5>5
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="seven-cols">
+                <h3>Sat</h3>
+                <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercise">
+                    <h4></h4>
+                </div>
+            </div>
+        </div>
+        <div class='calendar'>
+            <h3>Week 2</h3>
+            <div class="seven-cols">
+                <h3>Sun</h3>
+                <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercise">
+                    <h4></h4>
+                </div>
+            </div>
+            <div class="seven-cols">
+                <h3>Mon</h3>
+                <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercise">
+                    <h4 id='name'>Squat:</h4>
+                    <h5 id='sets'>Sets</h5>5
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+                <div class="exercise">
+                    <h4 id='name'>Overhead Press:</h4>
+                    <h5 id='sets'>Sets</h5>5
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+                <div class="exercise">
+                    <h4 id='name'>Deadlift:</h4>
+                    <h5 id='sets'>Sets</h5>1
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="seven-cols">
+                <h3>Tue</h3>
+                <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercise">
+                    <h4></h4>
+                </div>
+            </div>
+            <div class="seven-cols">
+                <h3>Wed</h3>
+                <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercise">
+                    <h4 id='name'>Squat:</h4>
+                    <h5 id='sets'>Sets</h5>5
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+                <div class="exercise">
+                    <h4 id='name'>Bench Press:</h4>
+                    <h5 id='sets'>Sets</h5>5
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+                <div class="exercise">
+                    <h4 id='name'>Barbell Rows:</h4>
+                    <h5 id='sets'>Sets</h5>5
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="seven-cols">
+                <h3>Thu</h3>
+                <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercise">
+                    <h4></h4>
+                </div>
+            </div>
+            <div class="seven-cols">
+                <h3>Fri</h3>
+                <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercise">
+                    <h4 id='name'>Squat:</h4>
+                    <h5 id='sets'>Sets</h5>5
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+                <div class="exercise">
+                    <h4 id='name'>Overhead Press:</h4>
+                    <h5 id='sets'>Sets</h5>5
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+                <div class="exercise">
+                    <h4 id='name'>Deadlift:</h4>
+                    <h5 id='sets'>Sets</h5>1
+                    <h5 id='reps'>Reps</h5>5<br>
+                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="seven-cols">
+                <h3>Sat</h3>
+                <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercise">
+                    <h4></h4>
+                </div>
+            </div>
+            <div class="recommend">
+                <input type='submit' class='start-button selector' value='Back to Selector'>
+                <input type='submit' class='start-button print' value='Print'></div>
+        </div>
+    </main>
+
+    <footer>
+        <ul>
+            <li>
+                <p>&#xa9; 2017 Rahul Vaidya</p>
+            </li>
+            <li>
+                <a href="https://github.com/rvaidyaa" title="Check out my code on GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <a href="mailto:rvaidyaa@gmail.com?Subject=Hello" title="Send me an email"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+            </li>
+        </ul>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src='client.js'></script>
+</body>
+
+</html>
