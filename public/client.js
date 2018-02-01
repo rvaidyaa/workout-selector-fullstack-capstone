@@ -1,7 +1,22 @@
 $(document).ready(function () {
     //    $('.landing').show();
-    //    $('.quiz').hide();
+    //    $('.question-one').hide();
+    //    $('.question-two').hide();
+    //    $('.question-three').hide();
+    //    $('.results').hide();
 });
-$('.start-button').on('click', function (event) {
-    $('.quiz').show();
+$('#start').on('click', function (event) {
+    $('.question-one').show();
+});
+$('#question-one').on('click', function (event) {
+    $('.question-one').hide();
+    $('.question-two').show();
+});
+$('#question-two').on('click', function (event) {
+    $('.question-one').hide();
+    $('.question-two').show();
+});
+$('#question-three').on('click', function (event) {
+    $('.question-one').hide();
+    $('.question-two').show();
 });

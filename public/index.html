@@ -19,9 +19,9 @@
             <h2>Application Features</h2><br>
             <span>Workout Selector helps beginner and intermidate level lifters find a workout routine that fits your needs! Fully customizable.Click the weights to start answering a series of questions that will point you towards a time tested routine that meets your needs.</span><br><br>
             <div class="column-three">
-                <h4>Select</h4>
+                <h4>Personalized</h4>
                 <div class='icon'><i class="fa fa-bars" aria-hidden="true"></i></div>
-                <h4>Experience Level</h4>
+                <h4>Routines</h4>
             </div>
             <div class="column-three">
                 <h4>Customize</h4>
@@ -31,9 +31,9 @@
             <div class="column-three">
                 <h4>Display</h4>
                 <div class='icon'><i class="fa fa-calendar-minus-o" aria-hidden="true"></i></div>
-                <h4>Plan</h4>
+                <h4>Calendar</h4>
             </div>
-            <div><br><input class='start-button selector' type="button" value=''></div>
+            <div><br><input class='start-button selector' id='start' type="button" value=''></div>
         </div>
     </main>
     <main class="question-one">
@@ -43,8 +43,8 @@
                     <h3>Describe your workout experience.</h3>
                 </div>
                 <div class="choices">
-                    <input class='user-input start-button beginner ' type="button" name="skill" value="Beginner">
-                    <input class='user-input start-button advanced ' type="button" name="skill" value="Advanced">
+                    <input class='user-input start-button beginner ' id='question-one' type="button" name="skill" value="Beginner">
+                    <input class='user-input start-button advanced ' id='question-one' type="button" name="skill" value="Advanced">
 
                 </div>
             </form>
@@ -55,9 +55,9 @@
             <h3>What are your workout goals?</h3>
         </div>
         <div class="choices">
-            <input class='user-input start-button strength' type="button" name="goal" value="Strength">
-            <input class='user-input start-button hypertrophy' type="button" name="goal" value="Hypertrophy">
-            <input class='user-input start-button conditioning' type="button" name="goal" value="Conditioning">
+            <input class='user-input start-button strength' id='question-two' type="button" name="goal" value="Strength">
+            <input class='user-input start-button hypertrophy' id='question-two' type="button" name="goal" value="Hypertrophy">
+            <input class='user-input start-button conditioning' id='question-two' type="button" name="goal" value="Conditioning">
 
         </div>
     </main>
@@ -279,7 +279,8 @@
             </div>
             <div class="recommend">
                 <input type='submit' class='start-button selector' value='Back to Selector'>
-                <input type='submit' class='start-button print' value='Print'></div>
+                <input type='submit' class='start-button print' value='Print'>
+                <input type='submit' class='start-button email' value='Email'></div>
         </div>
     </main>
 
