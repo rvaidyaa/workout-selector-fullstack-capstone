@@ -120,7 +120,33 @@ button {
     margin-right: 1rem;
 }
 
-.strength {
+.strength-display,
+.beginner-display,
+.advanced-display,
+.hypertrophy-display,
+.conditioning-display,
+.threex-display,
+.fourx-display,
+.fivex-display {
+    color: red;
+    margin: 1rem 0;
+    height: 90px;
+    text-shadow: 1px 1px black;
+    background-position: center;
+    background-size: cover;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    display: none;
+}
+
+.strength,
+.strength-display {
     background-image: url(../media/strength.jpg);
 }
 
@@ -128,36 +154,42 @@ button {
     background-image: url(../media/print.jpg);
 }
 
-.beginner {
+.beginner,
+.beginner-display {
     background-image: url(../media/beginner.jpg);
 }
 
-.advanced {
+.advanced,
+.advanced-display {
     background-image: url(../media/advanced.jpg);
 }
 
-.hypertrophy {
+.hypertrophy,
+.hypertrophy-display {
     background-image: url(../media/hypertrophy.jpg);
 }
 
-.conditioning {
+.conditioning,
+.conditioning-display {
     background-image: url(../media/conditioning.jpg);
 }
 
 .selector {
-    color: white;
     background-image: url(../media/selector.jpg);
 }
 
-.threex {
+.threex,
+.threex-display {
     background-image: url(../media/threex.jpg);
 }
 
-.fourx {
+.fourx,
+.fourx-display {
     background-image: url(../media/fourx.jpg);
 }
 
-.fivex {
+.fivex,
+.fivex-display {
     background-image: url(../media/fivex.jpg);
 }
 
@@ -213,7 +245,9 @@ main {
     font-size: 21px;
 }
 
-.display {}
+.display {
+    display: inline-block !important;
+}
 
 .result {
     line-height: 50px;
@@ -316,6 +350,10 @@ h4 {
     padding: 1rem;
 }
 
+.exercise input {
+    width: 90%;
+}
+
 h3 {
     text-decoration: underline;
     padding-top: 1rem;
@@ -331,11 +369,12 @@ h3 {
 .start-button:hover {
     cursor: pointer;
     background-color: yellow;
-    color: black;
+    color: purple;
     text-shadow: 1px 1px white;
 }
 
-.add-exercise:hover {
+.add-exercise:hover,
+.minus-exercise:hover {
     cursor: pointer;
     background-color: #731919;
     border-radius: .5rem;

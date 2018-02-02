@@ -66,9 +66,9 @@
             <h3>How many days a week can you dedicate to lifting?</h3>
         </div>
         <div class="choices">
-            <input class='user-input start-button threex' type="button" name="frequency" value="Three or Less">
-            <input class='user-input start-button fourx' type="button" name="frequency" value="Four">
-            <input class='user-input start-button fivex' type="button" name="frequency" value="Five or More"> </div>
+            <input class='user-input start-button threex' type="button" id='question-three' name="frequency" value="Three or Less">
+            <input class='user-input start-button fourx' type="button" id='question-three' name="frequency" value="Four">
+            <input class='user-input start-button fivex' type="button" id='question-three' name="frequency" value="Five or More"> </div>
 
     </main>
     <main class="results">
@@ -76,9 +76,16 @@
             <h3>You Selected:</h3>
         </div>
         <div class='user-select'>
-            <div class='column-three-selected beginner display'>Beginner</div>
-            <div class='column-three-selected threex display'>3x</div>
-            <div class='column-three-selected strength display'>Strength</div>
+            <div class='column-three-selected beginner-display '>Beginner</div>
+            <div class='column-three-selected advanced-display '>Advanced</div>
+            <div class='column-three-selected strength-display '>Strength</div>
+            <div class='column-three-selected hypertrophy-display'>Hypertrophy</div>
+            <div class='column-three-selected conditioning-display '>Conditioning</div>
+            <div class='column-three-selected threex-display '>3x</div>
+            <div class='column-three-selected fourx-display '>4x</div>
+            <div class='column-three-selected fivex-display '>5x</div>
+
+
         </div>
         <div class="recommend">
             <h2>Stronglifts 5x5</h2>
@@ -89,30 +96,33 @@
             <div class="seven-cols">
                 <h3>Sun</h3>
                 <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercises"></div>
                 <div class="exercise">
                     <h4></h4>
                 </div>
             </div>
             <div class="seven-cols">
-                <h3>Mon</h3>
-                <button class="add-exercise"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                <div class="exercise">
-                    <h4 id='name'>Squat:</h4>
-                    <h5 id='sets'>Sets</h5>5
-                    <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                </div>
-                <div class="exercise">
-                    <h4 id='name'>Bench Press:</h4>
-                    <h5 id='sets'>Sets</h5>5
-                    <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                </div>
-                <div class="exercise">
-                    <h4 id='name'>Barbell Rows:</h4>
-                    <h5 id='sets'>Sets</h5>5
-                    <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                <h3 class='day'>Mon</h3>
+                <button class="add-exercise"><div></div><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <div class="exercises">
+                    <div class="exercise">
+                        <h4 id='name'>Squat:</h4>
+                        <h5 id='sets'>Sets</h5>5
+                        <h5 id='reps'>Reps</h5>5<br>
+                        <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="exercise">
+                        <h4 id='name'>Bench Press:</h4>
+                        <h5 id='sets'>Sets</h5>5
+                        <h5 id='reps'>Reps</h5>5<br>
+                        <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="exercise">
+                        <h4 id='name'>Barbell Rows:</h4>
+                        <h5 id='sets'>Sets</h5>5
+                        <h5 id='reps'>Reps</h5>5<br>
+                        <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    </div>
                 </div>
             </div>
             <div class="seven-cols">
@@ -129,19 +139,19 @@
                     <h4 id='name'>Squat:</h4>
                     <h5 id='sets'>Sets</h5>5
                     <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
                 <div class="exercise">
                     <h4 id='name'>Overhead Press:</h4>
                     <h5 id='sets'>Sets</h5>5
                     <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
                 <div class="exercise">
                     <h4 id='name'>Deadlift:</h4>
                     <h5 id='sets'>Sets</h5>1
                     <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
             </div>
             <div class="seven-cols">
@@ -158,19 +168,19 @@
                     <h4 id='name'>Squat:</h4>
                     <h5 id='sets'>Sets</h5>5
                     <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
                 <div class="exercise">
                     <h4 id='name'>Bench Press:</h4>
                     <h5 id='sets'>Sets</h5>5
                     <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
                 <div class="exercise">
                     <h4 id='name'>Barbell Rows:</h4>
                     <h5 id='sets'>Sets</h5>5
                     <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
             </div>
             <div class="seven-cols">
@@ -197,19 +207,19 @@
                     <h4 id='name'>Squat:</h4>
                     <h5 id='sets'>Sets</h5>5
                     <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
                 <div class="exercise">
                     <h4 id='name'>Overhead Press:</h4>
                     <h5 id='sets'>Sets</h5>5
                     <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
                 <div class="exercise">
                     <h4 id='name'>Deadlift:</h4>
                     <h5 id='sets'>Sets</h5>1
                     <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
             </div>
             <div class="seven-cols">
@@ -226,19 +236,19 @@
                     <h4 id='name'>Squat:</h4>
                     <h5 id='sets'>Sets</h5>5
                     <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
                 <div class="exercise">
                     <h4 id='name'>Bench Press:</h4>
                     <h5 id='sets'>Sets</h5>5
                     <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
                 <div class="exercise">
                     <h4 id='name'>Barbell Rows:</h4>
                     <h5 id='sets'>Sets</h5>5
                     <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
             </div>
             <div class="seven-cols">
@@ -255,19 +265,19 @@
                     <h4 id='name'>Squat:</h4>
                     <h5 id='sets'>Sets</h5>5
                     <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
                 <div class="exercise">
                     <h4 id='name'>Overhead Press:</h4>
                     <h5 id='sets'>Sets</h5>5
                     <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
                 <div class="exercise">
                     <h4 id='name'>Deadlift:</h4>
                     <h5 id='sets'>Sets</h5>1
                     <h5 id='reps'>Reps</h5>5<br>
-                    <button class="add-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                    <button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 </div>
             </div>
             <div class="seven-cols">
