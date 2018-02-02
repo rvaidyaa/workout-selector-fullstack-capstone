@@ -44,7 +44,7 @@ function addExercise() {
 
 
 
-
+//document ready
 $(document).ready(function () {
     $('.landing').show();
     $('.question-one').hide();
@@ -52,6 +52,7 @@ $(document).ready(function () {
     $('.question-three').hide();
     $('.results').hide();
 });
+//landing page start button
 $(document).on('click', '#start', function (event) {
     $('.landing').hide();
     $('.question-two').hide();
@@ -69,7 +70,11 @@ $(document).on('click', '#start', function (event) {
     $('.fivex-display').hide();
     let quizSelection = [];
 });
-
+//final page restart button
+$(document).on('click', '#restart', function (event) {
+    location.reload();
+});
+//question one
 $(document).on('click', '#question-one', function (event) {
     $('.question-one').hide();
     $('.question-three').hide();
@@ -78,6 +83,7 @@ $(document).on('click', '#question-one', function (event) {
     $('.question-two').show();
 
 });
+//question two
 $(document).on('click', '#question-two', function (event) {
     $('.question-one').hide();
     $('.question-two').hide();
@@ -85,6 +91,7 @@ $(document).on('click', '#question-two', function (event) {
     $('.landing').hide();
     $('.question-three').show();
 });
+//question 3
 $(document).on('click', '#question-three', function (event) {
     $('.question-one').hide();
     $('.question-two').hide();
@@ -94,7 +101,7 @@ $(document).on('click', '#question-three', function (event) {
 
 });
 
-//these will grab the user selection
+//these will grab the user selection to display on final page, and adds user inputs to quizSelection Array (below)
 $(document).on('click', '.choices .beginner', function (event) {
     $('.beginner-display').addClass('display');
     quizSelection.push("beginner");
@@ -138,12 +145,11 @@ $(document).on('click', '.choices .fivex', function (event) {
     console.log(quizSelection);
     getWorkout(quizSelection);
 });
+//these will grab the user selection to display on final page, and adds user inputs to quizSelection Array (above)
 
 
 
-
-
-// add a exercise form
+// add a form for the user to input exercise sets and reps
 $(document).on('click', '.add-exercise', function (event) {
     console.log(quizSelection);
     var buildTheHtmlOutput = "";
@@ -154,12 +160,29 @@ $(document).on('click', '.add-exercise', function (event) {
     buildTheHtmlOutput += '<input type="text" class="exercise-sets">';;
     buildTheHtmlOutput += '<h4>Reps<h4>';
     buildTheHtmlOutput += '<input type="text" class="exercise-reps">';
-    buildTheHtmlOutput += '<button class="add-exercise" value="add">Add</button>';
+    buildTheHtmlOutput += '<button class="plus-exercise" value="add">Add</button>';
     buildTheHtmlOutput += '<div>'
     //this logic
     //    $(this).append(buildTheHtmlOutput);
-    $(this).find("div");
-    $('.seven-cols .exercises').append(buildTheHtmlOutput);
-
+    $(this).parent().find('.exercises').append(buildTheHtmlOutput);
+    //    $('.seven-cols .exercises').append(buildTheHtmlOutput);
+    alert('+ Clicked');
 });
-//add exercise
+
+//adds the exercise with the users sets reps and exercise name to the calendar
+$(document).on('click', '.plus-exercise', function (event) {
+    alert('add exercise clicked');
+});
+
+// deletes the exercise
+$(document).on('click', '.minus-exercise', function (event) {
+    alert('minus exercise clicked');
+});
+//print view
+$(document).on('click', '.print', function (event) {
+    alert('print clicked');
+});
+//form to email
+$(document).on('click', '.email', function (event) {
+    alert('email clicked');
+});
