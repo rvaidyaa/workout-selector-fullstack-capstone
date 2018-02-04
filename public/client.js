@@ -10,25 +10,31 @@ function getWorkout(quizSelection) {
     let goal = quizSelection[1];
     let commitment = quizSelection[2];
     console.log('users selections are :')
-    console.log(difficulty, goal, commitment);
 
-    //get request to server endpoint
-    //    $.ajax({
-    //            type: 'GET',
-    //            url: '/get-specific-workout/' + nixId + '/' + ,
-    //            dataType: 'json',
-    //
-    //        })
-    //        .done(function (result) {
-    //            // what we want to do with the return from database get request
-    //            // populate the exercises to the calendar
-    //        })
-    //        .fail(function (jqXHR, error, errorThrown) {
-    //            //client auto generates error when we miss
-    //            console.log(jqXHR);
-    //            console.log(error);
-    //            console.log(errorThrown);
-    //        });
+    let workoutObject = {
+        'difficulty': difficulty,
+        'goal': goal,
+        'commitment': commitment
+    };
+    console.log(workoutObject);
+
+    $.ajax({
+            type: 'POST',
+            url: "/get-specific-routine",
+            dataType: 'json',
+            data: JSON.stringify(workoutObject),
+            contentType: 'application/json'
+        })
+        .done(function (result) {
+            console.log('workouts results:')
+            console.log(result);
+
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
 }
 //post to add exercise
 function addExercise() {
@@ -119,7 +125,7 @@ $(document).on('click', '.choices .hypertrophy', function (event) {
 });
 $(document).on('click', '.choices .strength', function (event) {
     $('.strength-display').addClass('display');
-    quizSelection.push("Strength");
+    quizSelection.push("strength");
     console.log(quizSelection);
 });
 $(document).on('click', '.choices .conditioning', function (event) {
@@ -167,11 +173,30 @@ $(document).on('click', '.add-exercise', function (event) {
     $(this).parent().find('.exercises').append(buildTheHtmlOutput);
     //    $('.seven-cols .exercises').append(buildTheHtmlOutput);
     alert('+ Clicked');
+    let name = $('.exercise-name').val();
+    let sets = $('.exercise-sets').val();
+    let reps = $('.exercise-reps').val();
+    console.log(name,sets,reps);
+
 });
 
 //adds the exercise with the users sets reps and exercise name to the calendar
 $(document).on('click', '.plus-exercise', function (event) {
     alert('add exercise clicked');
+    let parent = $(this).parent().parent().parent();
+    console.log(parent);
+    var buildTheHtmlOutput = "";
+    buildTheHtmlOutput += '<div class="exercise">';
+    buildTheHtmlOutput += `<h4><h4>`;
+    buildTheHtmlOutput += '';
+    buildTheHtmlOutput += '<h4>Sets<h4>';
+    buildTheHtmlOutput += '';;
+    buildTheHtmlOutput += '<h4>Reps<h4>';
+    buildTheHtmlOutput += '';
+    buildTheHtmlOutput += '';
+    buildTheHtmlOutput += '<div>';
+
+
 });
 
 // deletes the exercise

@@ -374,7 +374,8 @@ h3 {
 }
 
 .add-exercise:hover,
-.minus-exercise:hover {
+.minus-exercise:hover,
+.plus-exercise:hover {
     cursor: pointer;
     background-color: #731919;
     border-radius: .5rem;
@@ -437,6 +438,10 @@ h3 {
     .column-three-selected {
         font-size: 16px;
     }
+    .display {
+        display: block !important;
+        width: 90%;
+    }
 }
 
 @media only screen and (max-width: 320px) {
@@ -451,5 +456,9 @@ h3 {
     }
     .seven-cols {
         width: 98%;
+    }
+    .display {
+        display: block !important;
+        width: 90%;
     }
 }

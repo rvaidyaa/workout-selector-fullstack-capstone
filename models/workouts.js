@@ -2,29 +2,29 @@
 
 const mongoose = require('mongoose');
 
-const exercisesSchema = new mongoose.Schema({
-    exercise: {
-        type: String,
-        required: false
-    },
+const workoutsSchema = new mongoose.Schema({
     name: {
         type: String,
         required: false
     },
-    sets: {
+    link: {
+        type: String,
+        required: false
+    },
+    exercises: {
         type: String,
         required: false
     },
 
-    reps: {
+    difficulty: {
         type: String,
         required: false
     },
-    days: {
+    goal: {
         type: String,
         required: false
     },
-    link: {
+    commitment: {
         type: String,
         required: false
     }
@@ -32,6 +32,6 @@ const exercisesSchema = new mongoose.Schema({
 
 
 
-const exercises = mongoose.model('exercises', exercisesSchema);
+const workouts = mongoose.model('workouts', workoutsSchema);
 
-module.exports = exercises;
+module.exports = workouts;

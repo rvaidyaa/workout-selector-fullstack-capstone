@@ -1,5 +1,6 @@
 //const User = require('./models/users');
-//const foodLog = require('./models/food-log');
+const workouts = require('./models/workouts');
+const exercises = require('./models/exercises');
 //const online = require('./models/online');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -60,8 +61,71 @@ function closeServer() {
         });
     }));
 }
+//
+app.post('/get-specific-routine', (req, res) => {
+    let difficulty = req.body.difficulty;
+    let goal = req.body.goal;
+    let commitment = req.body.commitment;
+    console.log('diff goal and commitment are:');
+    console.log(difficulty, goal, commitment);
+    workouts
+        .find({
+            'difficulty': difficulty,
+            'goal': goal,
+            'commitment': commitment
+        })
+        .then(function (workoutsResults) {
+            //here we want to grab the exercises from workoutresults
+            //for each exercises we want a exercises.find({'exercise':'})
+            console.log(workoutsResults);
+            console.log('workout results ^^^^');
+            //            let exercises = res.body.exercises;
+            //            console.log(exercises);
+            console.log('exercises for particular workout ^^^^')
+            res.json({
+                workoutsResults
 
+            });
+        })
+        .catch(function (err) {
+            console.error(err);
+            res.status(500).json({
+                message: 'Internal server error'
+            });
+        });
+});
+app.post('/get-specific-routine', (req, res) => {
+    let difficulty = req.body.difficulty;
+    let goal = req.body.goal;
+    let commitment = req.body.commitment;
+    console.log('diff goal and commitment are:');
+    console.log(difficulty, goal, commitment);
+    workouts
+        .find({
+            'difficulty': difficulty,
+            'goal': goal,
+            'commitment': commitment
+        })
+        .then(function (workoutsResults) {
+            //here we want to grab the exercises from workoutresults
+            //for each exercises we want a exercises.find({'exercise':'})
+            console.log(workoutsResults);
+            console.log('workout results ^^^^');
+            //            let exercises = res.body.exercises;
+            //            console.log(exercises);
+            console.log('exercises for particular workout ^^^^')
+            res.json({
+                workoutsResults
 
+            });
+        })
+        .catch(function (err) {
+            console.error(err);
+            res.status(500).json({
+                message: 'Internal server error'
+            });
+        });
+});
 // ---------------USER ENDPOINTS-------------------------------------
 
 //app.get('/', (req, res) => {
@@ -71,71 +135,6 @@ function closeServer() {
 //        res.sendFile(__dirname + '/public/index.html');
 //
 //    }
-//});
-
-
-
-// MISC ------------------------------------------
-// catch-all endpoint if client makes request to non-existent endpoint
-app.use('*', (req, res, next) => {
-    // check if client sent cookie
-    var cookie = req.cookies.USER_LOGGEDIN_COOKIE;
-    //    console.log('inital cookies = ', req.cookies);
-    if ((cookie == undefined) || (cookie.lenght == 0)) {
-        // no: set a new cookie
-
-        res.cookie('USER_LOGGEDIN_COOKIE', loggedInUser, {
-            maxAge: 900000,
-            httpOnly: true
-        });
-        //        console.log('cookie created successfully');
-
-    } else {
-        // yes, cookie was already present
-        //        console.log('cookie exists', cookie);
-    }
-    //    console.log('cookie set = ', req.cookies);
-    next(); // <-- important!
-});
-
-app.get('/get-specific-workout/:name', function (req, res) { //make the name more relevant (ingrediant)
-
-    //    external api function call and response
-
-    var searchReq = getFromNutritionix(req.params.name);
-
-    //get the data from the first api call
-    searchReq.on('end', function (item) {
-        res.json(item);
-    });
-
-    //error handling
-    searchReq.on('error', function (code) {
-        res.sendStatus(code);
-    });
-
-});
-
-//
-//app.delete('/delete-nutrition-data/:username', function (req, res) { //make better name
-//    console.log(req.params.username);
-//    foodLog.deleteMany({
-//        'username': req.params.username
-//    });
-//});
-//
-//app.delete('/delete-nutrition-data/:deleteMeal/:username', function (req, res) {
-//    foodLog.remove({
-//        'meal': req.params.deleteMeal
-//    }, function (err, item) {
-//        if (err) {
-//            return res.status(500).json({
-//                message: 'Internal Server Error'
-//            });
-//        }
-//        res.status(201).json(item);
-//    });
-//});
 
 
 
