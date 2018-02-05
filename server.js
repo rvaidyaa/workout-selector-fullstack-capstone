@@ -1,7 +1,8 @@
 //const User = require('./models/users');
 const workouts = require('./models/workouts');
 const exercises = require('./models/exercises');
-//const online = require('./models/online');
+const customexercises = require('./models/customexercises');
+const customworkout = require('./models/customworkout');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config');
@@ -77,11 +78,15 @@ app.post('/get-specific-routine', (req, res) => {
         .then(function (workoutsResults) {
             //here we want to grab the exercises from workoutresults
             //for each exercises we want a exercises.find({'exercise':'})
+            //populate calendar with exercise
+
+            //        customworkouts.create
             console.log(workoutsResults);
             console.log('workout results ^^^^');
             //            let exercises = res.body.exercises;
             //            console.log(exercises);
-            console.log('exercises for particular workout ^^^^')
+            //            console.log('exercises for particular workout ^^^^')
+
             res.json({
                 workoutsResults
 
@@ -94,28 +99,48 @@ app.post('/get-specific-routine', (req, res) => {
             });
         });
 });
-app.post('/get-specific-routine', (req, res) => {
-    let difficulty = req.body.difficulty;
-    let goal = req.body.goal;
-    let commitment = req.body.commitment;
-    console.log('diff goal and commitment are:');
-    console.log(difficulty, goal, commitment);
-    workouts
+
+//get exercises for user routine
+app.get('/get-specific-exercise/:exercise', function (req, res) {
+    console.log(req.params.exercise);
+    exercises
         .find({
-            'difficulty': difficulty,
-            'goal': goal,
-            'commitment': commitment
+            'exercise': req.params.exercise
         })
-        .then(function (workoutsResults) {
-            //here we want to grab the exercises from workoutresults
-            //for each exercises we want a exercises.find({'exercise':'})
-            console.log(workoutsResults);
-            console.log('workout results ^^^^');
+        .then(function (item) {
+            console.log('exercise is:');
+            console.log(item);
+            res.json({
+                item
+            });
+        })
+        .catch(function (err) {
+            console.error(err);
+            res.status(500).json({
+                message: 'Internal server error'
+            });
+        });
+});
+//post endpoint to add custom exercise
+app.post('/customexercises', (req, res) => {
+    let name = req.body.name;
+    let sets = req.body.sets;
+    let reps = req.body.reps;
+    console.log('diff goal and commitment are:');
+    console.log(name, sets, reps);
+    customexercises
+        .create({
+            'name': name,
+            'sets': sets,
+            'reps': reps
+        })
+        .then(function (customexercises) {
+            console.log(customexercises);
+            console.log('custom exercise is  ^^^^');
             //            let exercises = res.body.exercises;
             //            console.log(exercises);
-            console.log('exercises for particular workout ^^^^')
             res.json({
-                workoutsResults
+                customexercises
 
             });
         })
@@ -125,6 +150,19 @@ app.post('/get-specific-routine', (req, res) => {
                 message: 'Internal server error'
             });
         });
+});
+//delete endpoint to delete custom exercise, then we want to get the custom exercise
+app.delete('/delete-exercise/:name', function (req, res) {
+    console.log(req.params.name);
+    custom.deleteMany({
+        'username': req.params.username
+    }).exec().then(function (foodLog) {
+        return res.status(204).end();
+    }).catch(function (err) {
+        return res.status(500).json({
+            message: 'Internal Server Error'
+        });
+    });
 });
 // ---------------USER ENDPOINTS-------------------------------------
 
