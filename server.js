@@ -121,18 +121,40 @@ app.get('/get-specific-exercise/:exercise', function (req, res) {
             });
         });
 });
+app.get('/get-custom-exercises/:days', function (req, res) {
+    console.log(req.params.days);
+    customexercises
+        .find({
+            'days': req.params.days
+        })
+        .then(function (item) {
+            console.log('exercise is:');
+            console.log(item);
+            res.json({
+                item
+            });
+        })
+        .catch(function (err) {
+            console.error(err);
+            res.status(500).json({
+                message: 'Internal server error'
+            });
+        });
+});
 //post endpoint to add custom exercise
 app.post('/customexercises', (req, res) => {
     let name = req.body.name;
     let sets = req.body.sets;
     let reps = req.body.reps;
+    let days = req.body.days;
     console.log('diff goal and commitment are:');
-    console.log(name, sets, reps);
+    console.log(name, sets, reps, days);
     customexercises
         .create({
             'name': name,
             'sets': sets,
-            'reps': reps
+            'reps': reps,
+            'days': days
         })
         .then(function (customexercises) {
             console.log(customexercises);
@@ -152,18 +174,28 @@ app.post('/customexercises', (req, res) => {
         });
 });
 //delete endpoint to delete custom exercise, then we want to get the custom exercise
-app.delete('/delete-exercise/:name', function (req, res) {
-    console.log(req.params.name);
-    custom.deleteMany({
-        'username': req.params.username
-    }).exec().then(function (foodLog) {
-        return res.status(204).end();
-    }).catch(function (err) {
-        return res.status(500).json({
-            message: 'Internal Server Error'
-        });
+app.delete('/delete-exercises', function (req, res) { //make better name
+    customexercises.remove({}, function (err, items) {
+        if (err)
+            return res.status(404).json({
+                message: 'Item not found.'
+            });
+        res.status(201).json(items);
     });
 });
+
+
+
+
+//app.delete('/delete-exercises', function (req, res) { //make better name
+//    customexercises.remove({}); {
+//        return res.status(204).end();
+//    }).catch(function (err) {
+//    return res.status(500).json({
+//        message: 'Internal Server Error'
+//    });
+//});
+
 // ---------------USER ENDPOINTS-------------------------------------
 
 //app.get('/', (req, res) => {

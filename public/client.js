@@ -9,6 +9,7 @@ function getWorkout(quizSelection) {
     let difficulty = quizSelection[0];
     let goal = quizSelection[1];
     let commitment = quizSelection[2];
+    // add days
     console.log('inside getworkout:')
     console.log('users selections are :')
 
@@ -31,12 +32,17 @@ function getWorkout(quizSelection) {
             console.log(result);
             console.log('exercises:')
             let exercisesArray = result.workoutsResults[0].exercises.split(',');
+            let workoutName = result.workoutsResults[0].name;
+            let workoutLink = result.workoutsResults[0].link;
+            console.log('workout name & link:');
+            console.log(workoutName, workoutLink);
+            createTitle(workoutName, workoutLink);
             for (let i = 0; i < exercisesArray.length; i++) {
                 console.log(exercisesArray[i]);
                 getExercisesByName(exercisesArray[i]);
             }
 
-
+            $('.exercise-form').hide();
 
         })
         .fail(function (jqXHR, error, errorThrown) {
@@ -45,6 +51,18 @@ function getWorkout(quizSelection) {
             console.log(errorThrown);
         });
 }
+
+function createTitle(workoutName, workoutLink) {
+    $('.title').html(workoutName);
+    let buildHtml = '';
+    buildHtml += '<a href="';
+    buildHtml += workoutLink;
+    buildHtml += '">';
+    buildHtml += workoutLink;
+    buildHtml += '</a>';
+    $('.website').html(buildHtml);
+}
+
 
 function getExercisesByName(exerciseName) {
     $.ajax({
@@ -85,20 +103,21 @@ function displayExerciseOnCalendar(exerciseContent) {
             buildTheHtmlOutput += '</div>';
 
         });
-        console.log(buildTheHtmlOutput);
+        //        console.log(buildTheHtmlOutput);
         $('.' + exerciseDays[i] + " .exercises").append(buildTheHtmlOutput);
     }
 
 }
 //post to add exercise
-function addExercise(name, sets, reps) {
+function addExercise(name, sets, reps, days) {
     console.log('inside addExercise');
     console.log('name sets and reps are:');
-    console.log(name, sets, reps);
+    console.log(name, sets, reps, days);
     let customexercises = {
         'name': name,
         'sets': sets,
-        'reps': reps
+        'reps': reps,
+        'days': days
     };
     console.log(customexercises);
 
@@ -112,6 +131,42 @@ function addExercise(name, sets, reps) {
         .done(function (result) {
             console.log('workouts results:')
             console.log(result);
+            getCustomExercises(days);
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+}
+
+function getCustomExercises(days) {
+    $.ajax({
+            type: "GET",
+            url: "/get-custom-exercises/" + days,
+            dataType: 'json',
+        })
+        .done(function (result) {
+            console.log(result);
+            let buildTheHtmlOutput = '';
+            $.each(result.item, function (itemKey, itemValue) {
+
+                buildTheHtmlOutput += '<div class="exercise">';
+                buildTheHtmlOutput += '<h4>';
+                buildTheHtmlOutput += itemValue.name;
+                buildTheHtmlOutput += ':';
+                buildTheHtmlOutput += '</h4>';
+                buildTheHtmlOutput += '<h5 id="sets">Sets</h5>'
+                buildTheHtmlOutput += itemValue.sets;
+                buildTheHtmlOutput += '<h5 id="reps">Reps</h5>';
+                buildTheHtmlOutput += itemValue.reps;
+                buildTheHtmlOutput += '<br><button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>';
+                buildTheHtmlOutput += '</div>';
+
+            });
+            //        console.log(buildTheHtmlOutput);
+            $('.' + days + " .exercises").append(buildTheHtmlOutput);
+
 
         })
         .fail(function (jqXHR, error, errorThrown) {
@@ -121,7 +176,23 @@ function addExercise(name, sets, reps) {
         });
 }
 //delete endpoint to delete exercise
+function deletePrexistingExercises() {
 
+    $.ajax({
+            method: 'DELETE',
+            url: '/delete-exercises/',
+            success: getFoodItems
+        })
+        .done(function (result) {
+
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+}
 
 
 
@@ -137,6 +208,7 @@ $(document).ready(function () {
     $('.question-two').hide();
     $('.question-three').hide();
     $('.results').hide();
+    deletePrexistingExercises();
 });
 //landing page start button
 $(document).on('click', '#start', function (event) {
@@ -237,32 +309,22 @@ $(document).on('click', '.choices .fivex', function (event) {
 
 // add a form for the user to input exercise sets and reps
 $(document).on('click', '.add-exercise', function (event) {
-    console.log(quizSelection);
-    var buildTheHtmlOutput = "";
-    buildTheHtmlOutput += '<div class="exercise exercise-form">';
-    buildTheHtmlOutput += '<h4>Exercise Name<h4>';
-    buildTheHtmlOutput += '<input type="text" class="exercise-name">';
-    buildTheHtmlOutput += '<h4>Sets<h4>';
-    buildTheHtmlOutput += '<input type="number" class="exercise-sets">';;
-    buildTheHtmlOutput += '<h4>Reps<h4>';
-    buildTheHtmlOutput += '<input type="number" class="exercise-reps">';
-    buildTheHtmlOutput += '<button class="plus-exercise" value="add"><i class="fa fa-plus" aria-hidden="true"></button>';
-    buildTheHtmlOutput += '<div>'
-
-    $(this).parent().find('.exercises').append(buildTheHtmlOutput);
-
-    alert('+ Clicked');
-
-
+    $(this).parent().find('.exercise-form').show();
 });
 
 //adds the exercise with the users sets reps and exercise name to the calendar
-$(document).on('click', '.plus-exercise', function (event) {
+$(document).on('submit', '.exercise-form', function (event) {
+    event.preventDefault();
 
-    alert('add exercise clicked');
-    let name = $('.exercise-name').val();
-    let sets = $('.exercise-sets').val();
-    let reps = $('.exercise-reps').val();
+    let name = $(this).parent().find('.exercise-name').val();
+    let sets = $(this).parent().find('.exercise-sets').val();
+    let reps = $(this).parent().find('.exercise-reps').val();
+    let days = $(this).parent().find('.add-exercise-day').val();
+    console.log('name sets reps and days are:');
+    console.log(name, sets, reps, days);
+    //trying to grab value for day
+
+
     if (name == '') {
         alert('Please input a name');
     }
@@ -289,7 +351,7 @@ $(document).on('click', '.plus-exercise', function (event) {
         buildTheHtmlOutput += '<br><button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>';
         buildTheHtmlOutput += '</div>';
         parent.append(buildTheHtmlOutput);
-        addExercise(name, sets, reps);
+        addExercise(name, sets, reps, days);
     }
 });
 
