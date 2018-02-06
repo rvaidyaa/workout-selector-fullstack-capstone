@@ -177,11 +177,11 @@ function getCustomExercises(days) {
 }
 //delete endpoint to delete exercise
 function deletePrexistingExercises() {
+    console.log('inside delete prexisting exercises');
 
     $.ajax({
             method: 'DELETE',
-            url: '/delete-exercises/',
-            success: getFoodItems
+            url: '/delete-exercises/'
         })
         .done(function (result) {
 
@@ -358,6 +358,9 @@ $(document).on('submit', '.exercise-form', function (event) {
 // deletes the exercise
 $(document).on('click', '.minus-exercise', function (event) {
     alert('minus exercise clicked');
+    let parent = $(this).parent().remove();
+    console.log('minus exercise');
+    console.log(parent);
 });
 //print view
 $(document).on('click', '.print', function (event) {

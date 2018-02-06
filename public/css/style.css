@@ -381,6 +381,11 @@ h3 {
     border-radius: .5rem;
 }
 
+.plus-exercise:hover,
+.add-exercise:hover {
+    background-color: green;
+}
+
 .exercise,
 .exercise-form {
     border-radius: .5rem;
