@@ -1,7 +1,7 @@
 // define global functions variables and objects
-//global variable for user answer
-
-
+//global variable for user answer, email and email body text
+let emailBodyHtml = '';
+let emailBodyText = '';
 let quizSelection = [];
 
 //get the default non customized workout based on user selection
@@ -57,7 +57,7 @@ function createTitle(workoutName, workoutLink) {
     let buildHtml = '';
     buildHtml += '<a href="';
     buildHtml += workoutLink;
-    buildHtml += '">';
+    buildHtml += '" target="_blank">';
     buildHtml += workoutLink;
     buildHtml += '</a>';
     $('.website').html(buildHtml);
@@ -327,17 +327,15 @@ $(document).on('submit', '.exercise-form', function (event) {
 
     if (name == '') {
         alert('Please input a name');
-    }
-    if (sets == '') {
+    } else if (sets == '') {
         alert('Please input # of sets');
-    }
-    if (reps == '') {
+    } else if (reps == '') {
         alert('Please input # of reps');
     } else {
         console.log('name sets and reps are :');
         console.log(name, sets, reps);
         let parent = $(this).parent().parent().parent();
-        parent.find('.exercise-form').remove();
+        parent.find('.exercise-form').hide();
         var buildTheHtmlOutput = "";
         buildTheHtmlOutput += '<div class="exercise">';
         buildTheHtmlOutput += '<h4>';
@@ -356,11 +354,10 @@ $(document).on('submit', '.exercise-form', function (event) {
 });
 
 // deletes the exercise
-$(document).on('click', '.minus-exercise', function (event) {
-    alert('minus exercise clicked');
-    let parent = $(this).parent().remove();
-    console.log('minus exercise');
-    console.log(parent);
+$(document).on('click', '.form-minus-exercise', function (event) {
+    event.preventDefault();
+    $(this).parent().hide();
+
 });
 //print view
 $(document).on('click', '.print', function (event) {
@@ -369,4 +366,70 @@ $(document).on('click', '.print', function (event) {
 //form to email
 $(document).on('click', '.email', function (event) {
     alert('email clicked');
+
+});
+// send reading list email
+
+function buildEmailBodyHtml(articles) {
+    if (articles.length !== 0) {
+        emailBodyHtml += '<p>Below are your articles from Bias Balanced News:</p>';
+        emailBodyHtml += '<br />';
+        emailBodyHtml += '<ul>';
+        $.each(articles, function (index, value) {
+            emailBodyHtml += '<li><a href="' + value.articleUrl + '">' + value.articleTitle + '</a>';
+            emailBodyHtml += '<p> From ' + value.articleSource + '</p>';
+            emailBodyHtml += '<br />';
+            emailBodyHtml += '</li>';
+        });
+        emailBodyHtml += '</ul>';
+        emailBodyHtml += '<p>For more headlines, check out Bias Balanced News at https://bias-balanced-news.herokuapp.com/.</p>';
+
+    }
+}
+
+function buildEmailBodyText(articles) {
+    if (articles.length !== 0) {
+        emailBodyText += 'Below are your articles from Bias Balanced News:';
+        $.each(articles, function (index, value) {
+            emailBodyText += value.articleTitle;
+            emailBodyText += value.articleSource;
+            emailBodyText += value.articleUrl;
+        });
+        emailBodyText += 'For more headlines, check out Bias Balanced News at https://bias-balanced-news.herokuapp.com/.';
+    }
+}
+
+$(document).on('click', '.email', function (event) {
+    event.preventDefault();
+    var emailAddress = $('#email').val();
+    if (emailAddress.length === 0) {
+        displayError('Please enter an email address');
+    } else {
+        var emailObject = {
+            emailBody: emailBodyText,
+            emailHtml: emailBodyHtml,
+            emailAddress: emailAddress
+        }
+        $.ajax({
+                type: "POST",
+                url: '/send-email/',
+                dataType: 'json',
+                data: JSON.stringify(emailObject),
+                contentType: 'application/json'
+            })
+            // if API call successful
+            .done(function (result) {
+                displayError('Email Sent');
+                emailAddress = "";
+                $("#email").val("");
+            })
+            // if API call unsuccessful
+            .fail(function (jqXHR, error, errorThrown) {
+                // return errors
+                console.log(jqXHR);
+                console.log(error);
+                console.log(errorThrown);
+                displayError('Something went wrong');
+            });
+    }
 });

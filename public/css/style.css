@@ -373,6 +373,7 @@ h3 {
     text-shadow: 1px 1px white;
 }
 
+.form-minus-exercise:hover,
 .add-exercise:hover,
 .minus-exercise:hover,
 .plus-exercise:hover {

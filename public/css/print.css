@@ -1,0 +1,17 @@
+@media print {
+    /*
+    @page {
+    size: 210mm 297mm;
+    margin: 10mm;
+}
+    */
+    body {
+        width: 768px!important;
+    }
+    footer,
+    .results h3,
+    header,
+    .user-select {
+        display: none!important;
+    }
+}

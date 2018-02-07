@@ -19,6 +19,10 @@ const passport = require('passport');
 const BasicStrategy = require('passport-http').BasicStrategy;
 const express = require('express');
 const app = express();
+const nodemailer = require("nodemailer");
+
+// create reusable transport method (opens pool of SMTP connections)
+const transporter = nodemailer.createTransport('smtps://biasbalancednews%40gmail.com:2blue1.red@smtp.gmail.com');
 app.use(bodyParser.json());
 app.use(cors());
 app.use(cookieParser());
@@ -181,6 +185,24 @@ app.delete('/delete-exercises', function (req, res) { //make better name
                 message: 'Item not found.'
             });
         res.status(201).json(items);
+    });
+});
+// email api endpoint
+app.post("/send-email/", function (req, res) {
+    console.log(req.body.emailBody);
+    var mailOptions = {
+        from: '"Bias Balanced News" <biasbalancednews@gmail.com>', // sender address
+        to: req.body.emailAddress, // list of receivers
+        subject: 'My reading list', // Subject line
+        text: req.body.emailBody, // plaintext body
+        html: req.body.emailHtml // html body
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+        res.status(201).json(info);
     });
 });
 
