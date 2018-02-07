@@ -191,11 +191,11 @@ app.delete('/delete-exercises', function (req, res) { //make better name
 app.post("/send-email/", function (req, res) {
     console.log(req.body.emailBody);
     var mailOptions = {
-        from: '"Bias Balanced News" <biasbalancednews@gmail.com>', // sender address
+        from: '"Your Custom Workout" <biasbalancednews@gmail.com>', // sender address
         to: req.body.emailAddress, // list of receivers
         subject: 'My reading list', // Subject line
-        text: req.body.emailBody, // plaintext body
-        html: req.body.emailHtml // html body
+        text:'hello', //req.body.emailBody, // plaintext body
+        html: '<h1>hello</h1>'//req.body.emailHtml // html body
     };
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {

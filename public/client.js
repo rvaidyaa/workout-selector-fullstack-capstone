@@ -401,6 +401,7 @@ function buildEmailBodyText(articles) {
 
 $(document).on('click', '.email', function (event) {
     event.preventDefault();
+    //create an input for email
     var emailAddress = $('#email').val();
     if (emailAddress.length === 0) {
         displayError('Please enter an email address');
