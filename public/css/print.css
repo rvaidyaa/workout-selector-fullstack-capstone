@@ -6,12 +6,31 @@
 }
     */
     body {
-        width: 768px!important;
+        width: 1024px!important;
     }
     footer,
-    .results h3,
     header,
-    .user-select {
+    .user-select,
+    .recommend,
+    .add-exercise,
+    .minus-exercise,
+    .workout-header,
+    .email-input,
+    .start-button {
         display: none!important;
+    }
+    .seven-cols {
+        width: 12%;
+        !important;
+    }
+    .results {
+        width: 95%;
+        !important;
+    }
+    h4 {
+        font-size: 15px!important;
+    }
+    .calendar {
+        page-break-after: always!important;
     }
 }

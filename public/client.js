@@ -6,6 +6,7 @@ let quizSelection = [];
 
 //get the default non customized workout based on user selection
 function getWorkout(quizSelection) {
+    console.log(quizSelection);
     let difficulty = quizSelection[0];
     let goal = quizSelection[1];
     let commitment = quizSelection[2];
@@ -37,6 +38,9 @@ function getWorkout(quizSelection) {
             console.log('workout name & link:');
             console.log(workoutName, workoutLink);
             createTitle(workoutName, workoutLink);
+            buildEmailBodyHtml(result);
+
+
             for (let i = 0; i < exercisesArray.length; i++) {
                 console.log(exercisesArray[i]);
                 getExercisesByName(exercisesArray[i]);
@@ -105,6 +109,7 @@ function displayExerciseOnCalendar(exerciseContent) {
         });
         //        console.log(buildTheHtmlOutput);
         $('.' + exerciseDays[i] + " .exercises").append(buildTheHtmlOutput);
+        $('.' + exerciseDays[i] + " .exercises-email").append(buildTheHtmlOutput);
     }
 
 }
@@ -166,6 +171,8 @@ function getCustomExercises(days) {
             });
             //        console.log(buildTheHtmlOutput);
             $('.' + days + " .exercises").append(buildTheHtmlOutput);
+            $('.' + days + " .exercises-email").append(buildTheHtmlOutput);
+
 
 
         })
@@ -203,6 +210,8 @@ function deletePrexistingExercises() {
 
 //document ready
 $(document).ready(function () {
+    displayEmptyHtmlBody();
+    //    getWorkout(["beginner", "strength", "threex"]);
     $('.landing').show();
     $('.question-one').hide();
     $('.question-two').hide();
@@ -315,6 +324,7 @@ $(document).on('click', '.add-exercise', function (event) {
 //adds the exercise with the users sets reps and exercise name to the calendar
 $(document).on('submit', '.exercise-form', function (event) {
     event.preventDefault();
+    $('.form-minus-exercise').show();
 
     let name = $(this).parent().find('.exercise-name').val();
     let sets = $(this).parent().find('.exercise-sets').val();
@@ -335,6 +345,8 @@ $(document).on('submit', '.exercise-form', function (event) {
         console.log('name sets and reps are :');
         console.log(name, sets, reps);
         let parent = $(this).parent().parent().parent();
+        console.log('parent is:');
+        console.log(parent);
         parent.find('.exercise-form').hide();
         var buildTheHtmlOutput = "";
         buildTheHtmlOutput += '<div class="exercise">';
@@ -349,6 +361,7 @@ $(document).on('submit', '.exercise-form', function (event) {
         buildTheHtmlOutput += '<br><button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>';
         buildTheHtmlOutput += '</div>';
         parent.append(buildTheHtmlOutput);
+
         addExercise(name, sets, reps, days);
     }
 });
@@ -357,34 +370,177 @@ $(document).on('submit', '.exercise-form', function (event) {
 $(document).on('click', '.form-minus-exercise', function (event) {
     event.preventDefault();
     $(this).parent().hide();
+    $.ajax({
+        method: 'DELETE',
+        url: '/delete-exercise/' + deleteId,
+        success: getFoodItems
+    });
+    /inside the dom where we show the exercise add a unique id and ok
+
+
+});
+$(document).on('click', '.minus-exercise', function (event) {
+    event.preventDefault();
+    $(this).parent().hide();
 
 });
 //print view
 $(document).on('click', '.print', function (event) {
     alert('print clicked');
 });
-//form to email
-$(document).on('click', '.email', function (event) {
-    alert('email clicked');
 
-});
-// send reading list email
 
-function buildEmailBodyHtml(articles) {
-    if (articles.length !== 0) {
-        emailBodyHtml += '<p>Below are your articles from Bias Balanced News:</p>';
-        emailBodyHtml += '<br />';
-        emailBodyHtml += '<ul>';
-        $.each(articles, function (index, value) {
-            emailBodyHtml += '<li><a href="' + value.articleUrl + '">' + value.articleTitle + '</a>';
-            emailBodyHtml += '<p> From ' + value.articleSource + '</p>';
-            emailBodyHtml += '<br />';
-            emailBodyHtml += '</li>';
+
+
+
+
+
+
+
+//email functionality
+
+function getExercisesByNameEmail(exerciseName) {
+    $.ajax({
+            type: "GET",
+            url: "/get-specific-exercise/" + exerciseName,
+            dataType: 'json',
+        })
+        .done(function (dataOutput) {
+            console.log(dataOutput);
+            displayExerciseOnCalendarEmail(dataOutput.item);
+
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
         });
-        emailBodyHtml += '</ul>';
-        emailBodyHtml += '<p>For more headlines, check out Bias Balanced News at https://bias-balanced-news.herokuapp.com/.</p>';
+}
+
+function displayExerciseOnCalendarEmail(exerciseContent) {
+
+    let exerciseDays = exerciseContent[0].days.split(',');
+    for (let i = 0; i < exerciseDays.length; i++) {
+        var buildTheHtmlOutput = "";
+
+        $.each(exerciseContent, function (exerciseContentKey, exerciseContentValue) {
+
+            buildTheHtmlOutput += '<div class="exercise">';
+            buildTheHtmlOutput += '<h4>';
+            buildTheHtmlOutput += exerciseContentValue.name;
+            buildTheHtmlOutput += ':';
+            buildTheHtmlOutput += '</h4>';
+            buildTheHtmlOutput += '<h5 id="sets">Sets</h5>'
+            buildTheHtmlOutput += exerciseContentValue.sets;
+            buildTheHtmlOutput += '<h5 id="reps">Reps</h5>';
+            buildTheHtmlOutput += exerciseContentValue.reps;
+            buildTheHtmlOutput += '<br><button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>';
+            buildTheHtmlOutput += '</div>';
+
+        });
+        //        console.log(buildTheHtmlOutput);
+        $('.' + exerciseDays[i] + " .exercises").append(buildTheHtmlOutput);
+    }
+
+}
+// send reading list email
+function buildEmailBodyHtml(results) {
+    let exercisesArray = results.workoutsResults[0].exercises.split(',');
+    let workoutName = results.workoutsResults[0].name;
+    console.log(exercisesArray);
+
+    if (results.length !== 0) {
+
+
 
     }
+
+
+}
+
+function displayEmptyHtmlBody() {
+    emailBodyHtml += '<p>Below is your custom workout</p>';
+    emailBodyHtml += "<h2 class='title'></h2>";
+    emailBodyHtml += '<br />';
+    emailBodyHtml += '<ul>';
+    emailBodyHtml += "<div class='calendar'>";
+    emailBodyHtml += "<h3>Week 1</h3>";
+    emailBodyHtml += "<div class='seven-cols 1'>";
+    emailBodyHtml += "<h3 class='day'>Mon</h3>";
+    emailBodyHtml += "<div class='exercises-email'>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "<div class='seven-cols 2' value='2'>";
+    emailBodyHtml += "<h3 class='day'>Tue</h3>";
+    emailBodyHtml += "<div class='exercises-email'>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "<div class='seven-cols 3'>";
+    emailBodyHtml += "<h3 class='day' value='3'>Wed</h3>";
+    emailBodyHtml += "<div class='exercises-email'>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "<div class='seven-cols 4'>";
+    emailBodyHtml += "<h3 class='day' value='4'>Thu</h3>";
+    emailBodyHtml += "<div class='exercises-email'>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "<div class='seven-cols 5'>";
+    emailBodyHtml += "<h3 class='day' value='5'>Fri</h3>";
+    emailBodyHtml += "<div class='exercises-email'>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "<div class='seven-cols 6'>";
+    emailBodyHtml += "<h3 class='day' value='6'>Sat</h3";
+    emailBodyHtml += "<div class='exercises-email'>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "<div class='seven-cols 7'>";
+    emailBodyHtml += "<h3 class='day' value='7'>Sun</h3>";
+    emailBodyHtml += "<div class='exercises-email'>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "<div class='calendar'>";
+    emailBodyHtml += "<h3>Week 2</h3>";
+    emailBodyHtml += "<div class='seven-cols 8'>";
+    emailBodyHtml += "<h3 class='day' value='8'>Mon</h3>";
+    emailBodyHtml += "<div class='exercises-email'>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "<div class='seven-cols 9'>";
+    emailBodyHtml += "<h3 class='day' value='9'>Tue</h3>";
+    emailBodyHtml += "<div class='exercises-email'>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "<div class='seven-cols 10'>";
+    emailBodyHtml += "<h3 class='day' value='10'>Wed</h3>";
+    emailBodyHtml += "<div class='exercises-email'>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "<div class='seven-cols 11'>";
+    emailBodyHtml += "<h3 class='day' value='11'>Thu</h3>";
+    emailBodyHtml += "<div class='exercises-email'>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "<div class='seven-cols 12'>";
+    emailBodyHtml += "<h3 class='day' value='12'>Fri</h3>";
+    emailBodyHtml += "<div class='exercises-email'>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "<div class='seven-cols 13'>";
+    emailBodyHtml += "<h3 class='day' value='13'>Sat</h3>";
+    emailBodyHtml += "<div class='exercises-email'>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "<div class='seven-cols 14'>";
+    emailBodyHtml += "<h3 class='day' value='14'>Sun</h3>";
+    emailBodyHtml += "<div class='exercises-email'>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += "</div>";
+    emailBodyHtml += '</ul>';
+    $('.email-display').html(emailBodyHtml);
 }
 
 function buildEmailBodyText(articles) {
@@ -398,13 +554,17 @@ function buildEmailBodyText(articles) {
         emailBodyText += 'For more headlines, check out Bias Balanced News at https://bias-balanced-news.herokuapp.com/.';
     }
 }
+//form to email
 
 $(document).on('click', '.email', function (event) {
     event.preventDefault();
+    alert('email clicked');
+
     //create an input for email
     var emailAddress = $('#email').val();
+    console.log(emailAddress);
     if (emailAddress.length === 0) {
-        displayError('Please enter an email address');
+        alert('Please enter an email address');
     } else {
         var emailObject = {
             emailBody: emailBodyText,
@@ -420,7 +580,7 @@ $(document).on('click', '.email', function (event) {
             })
             // if API call successful
             .done(function (result) {
-                displayError('Email Sent');
+                alert('Email Sent');
                 emailAddress = "";
                 $("#email").val("");
             })
@@ -430,7 +590,8 @@ $(document).on('click', '.email', function (event) {
                 console.log(jqXHR);
                 console.log(error);
                 console.log(errorThrown);
-                displayError('Something went wrong');
+                alert('Something went wrong');
             });
     }
 });
+//form to email

@@ -247,6 +247,8 @@ main {
 
 .display {
     display: inline-block !important;
+    border-top-left-radius: 0.5rem;
+    border-bottom-right-radius: .5rem;
 }
 
 .result {
@@ -372,6 +374,15 @@ h3 {
     color: purple;
     text-shadow: 1px 1px white;
 }
+
+input {
+    font: inherit;
+    border-radius: .3rem;
+    color: brown;
+    font-weight: bold;
+}
+
+.email-input {}
 
 .form-minus-exercise:hover,
 .add-exercise:hover,

@@ -22,7 +22,7 @@ const app = express();
 const nodemailer = require("nodemailer");
 
 // create reusable transport method (opens pool of SMTP connections)
-const transporter = nodemailer.createTransport('smtps://biasbalancednews%40gmail.com:2blue1.red@smtp.gmail.com');
+const transporter = nodemailer.createTransport('smtps://yourcustomworkout%40gmail.com:Baloon00@smtp.gmail.com');
 app.use(bodyParser.json());
 app.use(cors());
 app.use(cookieParser());
@@ -191,11 +191,11 @@ app.delete('/delete-exercises', function (req, res) { //make better name
 app.post("/send-email/", function (req, res) {
     console.log(req.body.emailBody);
     var mailOptions = {
-        from: '"Your Custom Workout" <biasbalancednews@gmail.com>', // sender address
+        from: '"Your Custom Workout" <yourcustomworkout@gmail.com>', // sender address
         to: req.body.emailAddress, // list of receivers
-        subject: 'My reading list', // Subject line
-        text:'hello', //req.body.emailBody, // plaintext body
-        html: '<h1>hello</h1>'//req.body.emailHtml // html body
+        subject: 'Calendar', // Subject line
+        text: 'hello', //req.body.emailBody, // plaintext body
+        html: '<h1>hello</h1>' //req.body.emailHtml // html body
     };
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
