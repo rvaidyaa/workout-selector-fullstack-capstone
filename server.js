@@ -209,14 +209,15 @@ app.post("/send-email/", function (req, res) {
 
 
 
-//app.delete('/delete-exercises', function (req, res) { //make better name
-//    customexercises.remove({}); {
-//        return res.status(204).end();
-//    }).catch(function (err) {
-//    return res.status(500).json({
-//        message: 'Internal Server Error'
-//    });
-//});
+app.delete('/delete-custom-exercise/:deleteId', function (req, res) { //make better name
+    customexercises.findByIdAndRemove(req.params.deleteId).exec().then(function (foodLog) {
+        return res.status(204).end();
+    }).catch(function (err) {
+        return res.status(500).json({
+            message: 'Internal Server Error'
+        });
+    });
+});
 
 // ---------------USER ENDPOINTS-------------------------------------
 

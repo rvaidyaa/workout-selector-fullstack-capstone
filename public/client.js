@@ -94,7 +94,7 @@ function displayExerciseOnCalendar(exerciseContent) {
 
         $.each(exerciseContent, function (exerciseContentKey, exerciseContentValue) {
 
-            buildTheHtmlOutput += '<div class="exercise">';
+            buildTheHtmlOutput += '<div class="exercise default">';
             buildTheHtmlOutput += '<h4>';
             buildTheHtmlOutput += exerciseContentValue.name;
             buildTheHtmlOutput += ':';
@@ -103,11 +103,13 @@ function displayExerciseOnCalendar(exerciseContent) {
             buildTheHtmlOutput += exerciseContentValue.sets;
             buildTheHtmlOutput += '<h5 id="reps">Reps</h5>';
             buildTheHtmlOutput += exerciseContentValue.reps;
-            buildTheHtmlOutput += '<br><button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>';
+            buildTheHtmlOutput += '<br><button class="remove-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>';
             buildTheHtmlOutput += '</div>';
 
         });
         //        console.log(buildTheHtmlOutput);
+//        $('.' + exerciseDays[i] + " .exercises").find('.default').remove();
+//        $('.' + exerciseDays[i] + " .exercises-email").find('.default').remove();
         $('.' + exerciseDays[i] + " .exercises").append(buildTheHtmlOutput);
         $('.' + exerciseDays[i] + " .exercises-email").append(buildTheHtmlOutput);
     }
@@ -156,11 +158,12 @@ function getCustomExercises(days) {
             let buildTheHtmlOutput = '';
             $.each(result.item, function (itemKey, itemValue) {
 
-                buildTheHtmlOutput += '<div class="exercise">';
+                buildTheHtmlOutput += '<div class="exercise custom">';
                 buildTheHtmlOutput += '<h4>';
                 buildTheHtmlOutput += itemValue.name;
-                buildTheHtmlOutput += ':';
+                //                buildTheHtmlOutput += ':';
                 buildTheHtmlOutput += '</h4>';
+                buildTheHtmlOutput += '<input type="hidden" class="exercise-id" value="' + itemValue._id + '"+>';
                 buildTheHtmlOutput += '<h5 id="sets">Sets</h5>'
                 buildTheHtmlOutput += itemValue.sets;
                 buildTheHtmlOutput += '<h5 id="reps">Reps</h5>';
@@ -170,6 +173,8 @@ function getCustomExercises(days) {
 
             });
             //        console.log(buildTheHtmlOutput);
+            $('.' + days + " .exercises").find('.custom').remove();
+            $('.' + days + " .exercises-email").find('.custom').remove();
             $('.' + days + " .exercises").append(buildTheHtmlOutput);
             $('.' + days + " .exercises-email").append(buildTheHtmlOutput);
 
@@ -349,18 +354,18 @@ $(document).on('submit', '.exercise-form', function (event) {
         console.log(parent);
         parent.find('.exercise-form').hide();
         var buildTheHtmlOutput = "";
-        buildTheHtmlOutput += '<div class="exercise">';
-        buildTheHtmlOutput += '<h4>';
-        buildTheHtmlOutput += name;
-        buildTheHtmlOutput += ':';
-        buildTheHtmlOutput += '</h4>';
-        buildTheHtmlOutput += '<h5 id="sets">Sets</h5>'
-        buildTheHtmlOutput += sets;
-        buildTheHtmlOutput += '<h5 id="reps">Reps</h5>';
-        buildTheHtmlOutput += reps;
-        buildTheHtmlOutput += '<br><button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>';
-        buildTheHtmlOutput += '</div>';
-        parent.append(buildTheHtmlOutput);
+        //        buildTheHtmlOutput += '<div class="exercise">';
+        //        buildTheHtmlOutput += '<h4>';
+        //        buildTheHtmlOutput += name;
+        //        buildTheHtmlOutput += ':';
+        //        buildTheHtmlOutput += '</h4>';
+        //        buildTheHtmlOutput += '<h5 id="sets">Sets</h5>';
+        //        buildTheHtmlOutput += sets;
+        //        buildTheHtmlOutput += '<h5 id="reps">Reps</h5>';
+        //        buildTheHtmlOutput += reps;
+        //        buildTheHtmlOutput += '<br><button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>';
+        //        buildTheHtmlOutput += '</div>';
+        //        parent.append(buildTheHtmlOutput);
 
         addExercise(name, sets, reps, days);
     }
@@ -370,18 +375,44 @@ $(document).on('submit', '.exercise-form', function (event) {
 $(document).on('click', '.form-minus-exercise', function (event) {
     event.preventDefault();
     $(this).parent().hide();
-    $.ajax({
-        method: 'DELETE',
-        url: '/delete-exercise/' + deleteId,
-        success: getFoodItems
-    });
-    /inside the dom where we show the exercise add a unique id and ok
+
+    //inside the dom where we show the exercise add a place to have the id displayed (hidden)and then find by id and delete
+
+
+});
+$(document).on('click', '.remove-exercise', function (event) {
+    event.preventDefault();
+    $(this).parent().hide();
+
+    //inside the dom where we show the exercise add a place to have the id displayed (hidden)and then find by id and delete
 
 
 });
 $(document).on('click', '.minus-exercise', function (event) {
     event.preventDefault();
-    $(this).parent().hide();
+    let days = $(this).parent().parent().parent().find('.add-exercise-day').val();
+    let exerciseName = $(this).parent().parent().parent().find('h4').text();
+    console.log(exerciseName);
+    console.log('day is: name is:');
+    console.log(days);
+    let deleteId = $(this).parent().parent().find('.exercise-id').val();
+    //    $(this).parent().parent().find('.exercise-id').val('');
+    console.log($(this).parent().remove());
+    // get about deleting exercises
+    console.log('deleteId is ');
+    console.log(deleteId);
+    $.ajax({
+            method: 'DELETE',
+            url: '/delete-custom-exercise/' + deleteId,
+        }).done(function (result) {
+            getCustomExercises(days);
+            getExercisesByName(exerciseName);
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
 
 });
 //print view
@@ -399,50 +430,51 @@ $(document).on('click', '.print', function (event) {
 
 //email functionality
 
-function getExercisesByNameEmail(exerciseName) {
-    $.ajax({
-            type: "GET",
-            url: "/get-specific-exercise/" + exerciseName,
-            dataType: 'json',
-        })
-        .done(function (dataOutput) {
-            console.log(dataOutput);
-            displayExerciseOnCalendarEmail(dataOutput.item);
+//function getExercisesByNameEmail(exerciseName) {
+//    $.ajax({
+//            type: "GET",
+//            url: "/get-specific-exercise/" + exerciseName,
+//            dataType: 'json',
+//        })
+//        .done(function (dataOutput) {
+//            console.log(dataOutput);
+//            displayExerciseOnCalendarEmail(dataOutput.item);
+//
+//        })
+//        .fail(function (jqXHR, error, errorThrown) {
+//            console.log(jqXHR);
+//            console.log(error);
+//            console.log(errorThrown);
+//        });
+//}
 
-        })
-        .fail(function (jqXHR, error, errorThrown) {
-            console.log(jqXHR);
-            console.log(error);
-            console.log(errorThrown);
-        });
-}
-
-function displayExerciseOnCalendarEmail(exerciseContent) {
-
-    let exerciseDays = exerciseContent[0].days.split(',');
-    for (let i = 0; i < exerciseDays.length; i++) {
-        var buildTheHtmlOutput = "";
-
-        $.each(exerciseContent, function (exerciseContentKey, exerciseContentValue) {
-
-            buildTheHtmlOutput += '<div class="exercise">';
-            buildTheHtmlOutput += '<h4>';
-            buildTheHtmlOutput += exerciseContentValue.name;
-            buildTheHtmlOutput += ':';
-            buildTheHtmlOutput += '</h4>';
-            buildTheHtmlOutput += '<h5 id="sets">Sets</h5>'
-            buildTheHtmlOutput += exerciseContentValue.sets;
-            buildTheHtmlOutput += '<h5 id="reps">Reps</h5>';
-            buildTheHtmlOutput += exerciseContentValue.reps;
-            buildTheHtmlOutput += '<br><button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>';
-            buildTheHtmlOutput += '</div>';
-
-        });
-        //        console.log(buildTheHtmlOutput);
-        $('.' + exerciseDays[i] + " .exercises").append(buildTheHtmlOutput);
-    }
-
-}
+//function displayExerciseOnCalendarEmail(exerciseContent) {
+//
+//    let exerciseDays = exerciseContent[0].days.split(',');
+//    for (let i = 0; i < exerciseDays.length; i++) {
+//        var buildTheHtmlOutput = "";
+//
+//        $.each(exerciseContent, function (exerciseContentKey, exerciseContentValue) {
+//
+//            buildTheHtmlOutput += '<div class="exercise default">';
+//            buildTheHtmlOutput += '<h4>';
+//            buildTheHtmlOutput += exerciseContentValue.name;
+//            buildTheHtmlOutput += ':';
+//            buildTheHtmlOutput += '</h4>';
+//            buildTheHtmlOutput += '<h5 id="sets">Sets</h5>'
+//            buildTheHtmlOutput += exerciseContentValue.sets;
+//            buildTheHtmlOutput += '<h5 id="reps">Reps</h5>';
+//            buildTheHtmlOutput += exerciseContentValue.reps;
+//            buildTheHtmlOutput += '<br><button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>';
+//            buildTheHtmlOutput += '</div>';
+//
+//        });
+//        //        console.log(buildTheHtmlOutput);
+//
+//        $('.' + exerciseDays[i] + " .exercises").append(buildTheHtmlOutput);
+//    }
+//
+//}
 // send reading list email
 function buildEmailBodyHtml(results) {
     let exercisesArray = results.workoutsResults[0].exercises.split(',');
