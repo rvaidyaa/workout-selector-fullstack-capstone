@@ -38,7 +38,7 @@ function getWorkout(quizSelection) {
             console.log('workout name & link:');
             console.log(workoutName, workoutLink);
             createTitle(workoutName, workoutLink);
-            buildEmailBodyHtml(result);
+//            buildEmailBodyHtml(result);
 
 
             for (let i = 0; i < exercisesArray.length; i++) {
@@ -108,8 +108,8 @@ function displayExerciseOnCalendar(exerciseContent) {
 
         });
         //        console.log(buildTheHtmlOutput);
-//        $('.' + exerciseDays[i] + " .exercises").find('.default').remove();
-//        $('.' + exerciseDays[i] + " .exercises-email").find('.default').remove();
+        //        $('.' + exerciseDays[i] + " .exercises").find('.default').remove();
+        //        $('.' + exerciseDays[i] + " .exercises-email").find('.default').remove();
         $('.' + exerciseDays[i] + " .exercises").append(buildTheHtmlOutput);
         $('.' + exerciseDays[i] + " .exercises-email").append(buildTheHtmlOutput);
     }
@@ -215,7 +215,7 @@ function deletePrexistingExercises() {
 
 //document ready
 $(document).ready(function () {
-    displayEmptyHtmlBody();
+//    displayEmptyHtmlBody();
     //    getWorkout(["beginner", "strength", "threex"]);
     $('.landing').show();
     $('.question-one').hide();
@@ -476,154 +476,154 @@ $(document).on('click', '.print', function (event) {
 //
 //}
 // send reading list email
-function buildEmailBodyHtml(results) {
-    let exercisesArray = results.workoutsResults[0].exercises.split(',');
-    let workoutName = results.workoutsResults[0].name;
-    console.log(exercisesArray);
+//function buildEmailBodyHtml(results) {
+//    let exercisesArray = results.workoutsResults[0].exercises.split(',');
+//    let workoutName = results.workoutsResults[0].name;
+//    console.log(exercisesArray);
+//
+//    if (results.length !== 0) {
+//
+//
+//
+//    }
+//
+//
+//}
 
-    if (results.length !== 0) {
+//function displayEmptyHtmlBody() {
+//    emailBodyHtml += '<p>Below is your custom workout</p>';
+//    emailBodyHtml += "<h2 class='title'></h2>";
+//    emailBodyHtml += '<br />';
+//    emailBodyHtml += '<ul>';
+//    emailBodyHtml += "<div class='calendar'>";
+//    emailBodyHtml += "<h3>Week 1</h3>";
+//    emailBodyHtml += "<div class='seven-cols 1'>";
+//    emailBodyHtml += "<h3 class='day'>Mon</h3>";
+//    emailBodyHtml += "<div class='exercises-email'>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "<div class='seven-cols 2' value='2'>";
+//    emailBodyHtml += "<h3 class='day'>Tue</h3>";
+//    emailBodyHtml += "<div class='exercises-email'>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "<div class='seven-cols 3'>";
+//    emailBodyHtml += "<h3 class='day' value='3'>Wed</h3>";
+//    emailBodyHtml += "<div class='exercises-email'>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "<div class='seven-cols 4'>";
+//    emailBodyHtml += "<h3 class='day' value='4'>Thu</h3>";
+//    emailBodyHtml += "<div class='exercises-email'>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "<div class='seven-cols 5'>";
+//    emailBodyHtml += "<h3 class='day' value='5'>Fri</h3>";
+//    emailBodyHtml += "<div class='exercises-email'>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "<div class='seven-cols 6'>";
+//    emailBodyHtml += "<h3 class='day' value='6'>Sat</h3";
+//    emailBodyHtml += "<div class='exercises-email'>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "<div class='seven-cols 7'>";
+//    emailBodyHtml += "<h3 class='day' value='7'>Sun</h3>";
+//    emailBodyHtml += "<div class='exercises-email'>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "<div class='calendar'>";
+//    emailBodyHtml += "<h3>Week 2</h3>";
+//    emailBodyHtml += "<div class='seven-cols 8'>";
+//    emailBodyHtml += "<h3 class='day' value='8'>Mon</h3>";
+//    emailBodyHtml += "<div class='exercises-email'>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "<div class='seven-cols 9'>";
+//    emailBodyHtml += "<h3 class='day' value='9'>Tue</h3>";
+//    emailBodyHtml += "<div class='exercises-email'>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "<div class='seven-cols 10'>";
+//    emailBodyHtml += "<h3 class='day' value='10'>Wed</h3>";
+//    emailBodyHtml += "<div class='exercises-email'>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "<div class='seven-cols 11'>";
+//    emailBodyHtml += "<h3 class='day' value='11'>Thu</h3>";
+//    emailBodyHtml += "<div class='exercises-email'>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "<div class='seven-cols 12'>";
+//    emailBodyHtml += "<h3 class='day' value='12'>Fri</h3>";
+//    emailBodyHtml += "<div class='exercises-email'>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "<div class='seven-cols 13'>";
+//    emailBodyHtml += "<h3 class='day' value='13'>Sat</h3>";
+//    emailBodyHtml += "<div class='exercises-email'>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "<div class='seven-cols 14'>";
+//    emailBodyHtml += "<h3 class='day' value='14'>Sun</h3>";
+//    emailBodyHtml += "<div class='exercises-email'>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += "</div>";
+//    emailBodyHtml += '</ul>';
+//    $('.email-display').html(emailBodyHtml);
+//}
 
-
-
-    }
-
-
-}
-
-function displayEmptyHtmlBody() {
-    emailBodyHtml += '<p>Below is your custom workout</p>';
-    emailBodyHtml += "<h2 class='title'></h2>";
-    emailBodyHtml += '<br />';
-    emailBodyHtml += '<ul>';
-    emailBodyHtml += "<div class='calendar'>";
-    emailBodyHtml += "<h3>Week 1</h3>";
-    emailBodyHtml += "<div class='seven-cols 1'>";
-    emailBodyHtml += "<h3 class='day'>Mon</h3>";
-    emailBodyHtml += "<div class='exercises-email'>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "<div class='seven-cols 2' value='2'>";
-    emailBodyHtml += "<h3 class='day'>Tue</h3>";
-    emailBodyHtml += "<div class='exercises-email'>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "<div class='seven-cols 3'>";
-    emailBodyHtml += "<h3 class='day' value='3'>Wed</h3>";
-    emailBodyHtml += "<div class='exercises-email'>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "<div class='seven-cols 4'>";
-    emailBodyHtml += "<h3 class='day' value='4'>Thu</h3>";
-    emailBodyHtml += "<div class='exercises-email'>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "<div class='seven-cols 5'>";
-    emailBodyHtml += "<h3 class='day' value='5'>Fri</h3>";
-    emailBodyHtml += "<div class='exercises-email'>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "<div class='seven-cols 6'>";
-    emailBodyHtml += "<h3 class='day' value='6'>Sat</h3";
-    emailBodyHtml += "<div class='exercises-email'>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "<div class='seven-cols 7'>";
-    emailBodyHtml += "<h3 class='day' value='7'>Sun</h3>";
-    emailBodyHtml += "<div class='exercises-email'>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "<div class='calendar'>";
-    emailBodyHtml += "<h3>Week 2</h3>";
-    emailBodyHtml += "<div class='seven-cols 8'>";
-    emailBodyHtml += "<h3 class='day' value='8'>Mon</h3>";
-    emailBodyHtml += "<div class='exercises-email'>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "<div class='seven-cols 9'>";
-    emailBodyHtml += "<h3 class='day' value='9'>Tue</h3>";
-    emailBodyHtml += "<div class='exercises-email'>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "<div class='seven-cols 10'>";
-    emailBodyHtml += "<h3 class='day' value='10'>Wed</h3>";
-    emailBodyHtml += "<div class='exercises-email'>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "<div class='seven-cols 11'>";
-    emailBodyHtml += "<h3 class='day' value='11'>Thu</h3>";
-    emailBodyHtml += "<div class='exercises-email'>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "<div class='seven-cols 12'>";
-    emailBodyHtml += "<h3 class='day' value='12'>Fri</h3>";
-    emailBodyHtml += "<div class='exercises-email'>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "<div class='seven-cols 13'>";
-    emailBodyHtml += "<h3 class='day' value='13'>Sat</h3>";
-    emailBodyHtml += "<div class='exercises-email'>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "<div class='seven-cols 14'>";
-    emailBodyHtml += "<h3 class='day' value='14'>Sun</h3>";
-    emailBodyHtml += "<div class='exercises-email'>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += "</div>";
-    emailBodyHtml += '</ul>';
-    $('.email-display').html(emailBodyHtml);
-}
-
-function buildEmailBodyText(articles) {
-    if (articles.length !== 0) {
-        emailBodyText += 'Below are your articles from Bias Balanced News:';
-        $.each(articles, function (index, value) {
-            emailBodyText += value.articleTitle;
-            emailBodyText += value.articleSource;
-            emailBodyText += value.articleUrl;
-        });
-        emailBodyText += 'For more headlines, check out Bias Balanced News at https://bias-balanced-news.herokuapp.com/.';
-    }
-}
-//form to email
-
-$(document).on('click', '.email', function (event) {
-    event.preventDefault();
-    alert('email clicked');
-
-    //create an input for email
-    var emailAddress = $('#email').val();
-    console.log(emailAddress);
-    if (emailAddress.length === 0) {
-        alert('Please enter an email address');
-    } else {
-        var emailObject = {
-            emailBody: emailBodyText,
-            emailHtml: emailBodyHtml,
-            emailAddress: emailAddress
-        }
-        $.ajax({
-                type: "POST",
-                url: '/send-email/',
-                dataType: 'json',
-                data: JSON.stringify(emailObject),
-                contentType: 'application/json'
-            })
-            // if API call successful
-            .done(function (result) {
-                alert('Email Sent');
-                emailAddress = "";
-                $("#email").val("");
-            })
-            // if API call unsuccessful
-            .fail(function (jqXHR, error, errorThrown) {
-                // return errors
-                console.log(jqXHR);
-                console.log(error);
-                console.log(errorThrown);
-                alert('Something went wrong');
-            });
-    }
-});
+//function buildEmailBodyText(articles) {
+//    if (articles.length !== 0) {
+//        emailBodyText += 'Below are your articles from Bias Balanced News:';
+//        $.each(articles, function (index, value) {
+//            emailBodyText += value.articleTitle;
+//            emailBodyText += value.articleSource;
+//            emailBodyText += value.articleUrl;
+//        });
+//        emailBodyText += 'For more headlines, check out Bias Balanced News at https://bias-balanced-news.herokuapp.com/.';
+//    }
+//}
+////form to email
+//
+//$(document).on('click', '.email', function (event) {
+//    event.preventDefault();
+//    alert('email clicked');
+//
+//    //create an input for email
+//    var emailAddress = $('#email').val();
+//    console.log(emailAddress);
+//    if (emailAddress.length === 0) {
+//        alert('Please enter an email address');
+//    } else {
+//        var emailObject = {
+//            emailBody: emailBodyText,
+//            emailHtml: emailBodyHtml,
+//            emailAddress: emailAddress
+//        }
+//        $.ajax({
+//                type: "POST",
+//                url: '/send-email/',
+//                dataType: 'json',
+//                data: JSON.stringify(emailObject),
+//                contentType: 'application/json'
+//            })
+//            // if API call successful
+//            .done(function (result) {
+//                alert('Email Sent');
+//                emailAddress = "";
+//                $("#email").val("");
+//            })
+//            // if API call unsuccessful
+//            .fail(function (jqXHR, error, errorThrown) {
+//                // return errors
+//                console.log(jqXHR);
+//                console.log(error);
+//                console.log(errorThrown);
+//                alert('Something went wrong');
+//            });
+//    }
+//});
 //form to email
