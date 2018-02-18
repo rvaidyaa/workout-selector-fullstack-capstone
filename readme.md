@@ -63,24 +63,16 @@ Find a working prototype with Node at https://workout-selector.herokuapp.com/ an
 * User passwords are encrypted using "https://github.com/dcodeIO/bcrypt.js"
 
 ## API Documentation
-Available workouts (id exercises and url)
 
-Available exercises
-
-chosen workout takes the ID of the available workout
-
-chosen exercises
 API endpoints for the back end include:
-* POST to '/users/create' for creating a new user
-* POST to '/signin' to sign in an existing user
-* POST to '/new/create' to add an achievement to a user's list of accomplishments
-* PUT to '/allocate-item-to-meal' to categorize a meal to breakfast lunch or dinner
-* GET to '/ingredient/:name' to search external api for user food search term
-* GET to '/nix/:number' when a user selects a food item to add, this makes a external api call to get specifics on the food item
-* DELETE to '/nix/:number' to delete a single food item from the meal
-* DELETE to /delete-nutrition-data/:username' to delete all a users meals
+* POST to '/workouts' to get user selected workout
+* GET to '/exercises' to get exercises pertaining to the workout and display them on calendar
+* POST to '/customexercises' to add a custom exercise to the workout
+* GET to '/get-custom-exercises' to disiplay the custom exercise on the calendar
+* DELETE to '/delete-exercises' on refresh and start to clear custom exercises
+* DELETE to '/delete-custom-exercise' to delete a custom exercise from workout
 
 ## Development Roadmap
 Planned additional features and improvements will allow users to:
-* Weekly tracker
-* Change password
+Additional Workouts
+Option to add notes
