@@ -32,7 +32,7 @@ As a visitor I would like to be able to print/pdf or email myself the workout
 
 
 ## Working Prototype
-Find a working prototype with Node at https://workout-selector.herokuapp.com/ .
+Find a working prototype with Node at https://workout-selector.herokuapp.com/ and with React here https://rvaidyaa.github.io/workout-selector-fullstack-capstone-react/build/.
 
 
 ## Technical

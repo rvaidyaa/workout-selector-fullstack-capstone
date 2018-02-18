@@ -38,7 +38,7 @@ function getWorkout(quizSelection) {
             console.log('workout name & link:');
             console.log(workoutName, workoutLink);
             createTitle(workoutName, workoutLink);
-//            buildEmailBodyHtml(result);
+            //            buildEmailBodyHtml(result);
 
 
             for (let i = 0; i < exercisesArray.length; i++) {
@@ -76,8 +76,9 @@ function getExercisesByName(exerciseName) {
         })
         .done(function (dataOutput) {
             console.log(dataOutput);
-            displayExerciseOnCalendar(dataOutput.item);
-
+            if (dataOutput.item.length != 0) {
+                displayExerciseOnCalendar(dataOutput.item);
+            }
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
@@ -215,7 +216,7 @@ function deletePrexistingExercises() {
 
 //document ready
 $(document).ready(function () {
-//    displayEmptyHtmlBody();
+    //    displayEmptyHtmlBody();
     //    getWorkout(["beginner", "strength", "threex"]);
     $('.landing').show();
     $('.question-one').hide();
@@ -417,7 +418,7 @@ $(document).on('click', '.minus-exercise', function (event) {
 });
 //print view
 $(document).on('click', '.print', function (event) {
-    alert('print clicked');
+    window.print();
 });
 
 
