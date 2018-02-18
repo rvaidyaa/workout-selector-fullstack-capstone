@@ -74,5 +74,5 @@ API endpoints for the back end include:
 
 ## Development Roadmap
 Planned additional features and improvements will allow users to:
-Additional Workouts
-Option to add notes
+* Additional Workouts
+* Option to add notes
