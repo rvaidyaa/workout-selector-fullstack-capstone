@@ -45,7 +45,7 @@ Find a working prototype with Node at https://workout-selector.herokuapp.com/ an
 * CSS3
 * JavaScript
 * jQuery
-* React
+
 
 ### Back End
 
@@ -60,9 +60,6 @@ Find a working prototype with Node at https://workout-selector.herokuapp.com/ an
 
 * The app is responsive and optimized for both desktop and mobile viewing and use.
 
-### Security
-
-* User passwords are encrypted using "https://github.com/dcodeIO/bcrypt.js"
 
 ## API Documentation
 
