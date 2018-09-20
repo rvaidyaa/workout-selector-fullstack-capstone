@@ -5,7 +5,7 @@ Fullstack capstone for the thinkful course.
 
 Workout-selector is a application that asks a few simple questions and recommends a workout that fits your needs. Then you can further customize the workout to your liking.
 ## Screenshots
-![Landing page screen shot](https://github.com/rvaidyaa/workout-selector-fullstack-capstone/blob/master/github-images/landing.png)
+![Landing page screen shot](https://github.com/rvaidyaa/workout-selector-fullstack-capstone/blob/master/github-images/landingpage.png)
 ![Account setup screen shot](https://github.com/rvaidyaa/workout-selector-fullstack-capstone/blob/master/github-images/option1.png)
 ![Account setup screen shot](https://github.com/rvaidyaa/workout-selector-fullstack-capstone/blob/master/github-images/option2.png)
 ![Account setup screen shot](https://github.com/rvaidyaa/workout-selector-fullstack-capstone/blob/master/github-images/option3.png)
