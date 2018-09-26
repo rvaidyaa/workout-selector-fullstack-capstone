@@ -4,29 +4,30 @@ const exercises = require('./models/exercises');
 const customexercises = require('./models/customexercises');
 const customworkout = require('./models/customworkout');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+//const cookieParser = require('cookie-parser');
 const config = require('./config');
 const mongoose = require('mongoose');
-const moment = require('moment');
+//const moment = require('moment');
 const cors = require('cors');
 
 
-const unirest = require('unirest');
+//const unirest = require('unirest');
 const events = require('events');
 
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
-const BasicStrategy = require('passport-http').BasicStrategy;
+//const bcrypt = require('bcryptjs');
+//const passport = require('passport');
+//const BasicStrategy = require('passport-http').BasicStrategy;
 const express = require('express');
 const app = express();
-const nodemailer = require("nodemailer");
+//const nodemailer = require("nodemailer");
 
 // create reusable transport method (opens pool of SMTP connections)
-const transporter = nodemailer.createTransport('smtps://yourcustomworkout%40gmail.com:Baloon00@smtp.gmail.com');
+//const transporter = nodemailer.createTransport('smtps://yourcustomworkout%40gmail.com:Baloon00@smtp.gmail.com');
 app.use(bodyParser.json());
 app.use(cors());
-app.use(cookieParser());
 app.use(express.static('public'));;
+//app.use(cookieParser());
+
 
 mongoose.Promise = global.Promise;
 

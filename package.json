@@ -7,18 +7,19 @@
         "bcrypt": "^0.8.7",
         "bcryptjs": "^2.3.0",
         "body-parser": "^1.15.2",
+        "cookie-parser": "^1.4.3",
         "cors": "^2.8.4",
         "express": "^4.14.0",
+        "gmail-send": "^1.2.13",
         "isomorphic-fetch": "^2.2.1",
         "moment": "^2.18.1",
         "mongodb": "^2.2.9",
         "mongoose": "^4.5.10",
+        "nodemon": "^1.18.4",
         "passport": "^0.3.2",
         "passport-http": "^0.3.0",
-        "unirest": "^0.5.1",
-        "cookie-parser": "^1.4.3",
-        "gmail-send": "^1.2.13",
-        "sendmail": "^1.2.0"
+        "sendmail": "^1.2.0",
+        "unirest": "^0.5.1"
     },
     "devDependencies": {
         "chai": "^3.5.0",
@@ -31,7 +32,7 @@
     },
     "scripts": {
         "test": "mocha",
-        "start": "node server.js"
+        "start": "nodemon server.js"
     },
     "repository": {
         "type": "git",
