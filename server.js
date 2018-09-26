@@ -1,32 +1,20 @@
-//const User = require('./models/users');
 const workouts = require('./models/workouts');
 const exercises = require('./models/exercises');
 const customexercises = require('./models/customexercises');
 const customworkout = require('./models/customworkout');
 const bodyParser = require('body-parser');
-//const cookieParser = require('cookie-parser');
 const config = require('./config');
 const mongoose = require('mongoose');
-//const moment = require('moment');
 const cors = require('cors');
 
-
-//const unirest = require('unirest');
-const events = require('events');
-
-//const bcrypt = require('bcryptjs');
-//const passport = require('passport');
-//const BasicStrategy = require('passport-http').BasicStrategy;
 const express = require('express');
 const app = express();
-//const nodemailer = require("nodemailer");
 
-// create reusable transport method (opens pool of SMTP connections)
-//const transporter = nodemailer.createTransport('smtps://yourcustomworkout%40gmail.com:Baloon00@smtp.gmail.com');
+
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static('public'));;
-//app.use(cookieParser());
+
 
 
 mongoose.Promise = global.Promise;
@@ -188,25 +176,6 @@ app.delete('/delete-exercises', function (req, res) { //make better name
         res.status(201).json(items);
     });
 });
-// email api endpoint
-app.post("/send-email/", function (req, res) {
-    console.log(req.body.emailBody);
-    var mailOptions = {
-        from: '"Your Custom Workout" <yourcustomworkout@gmail.com>', // sender address
-        to: req.body.emailAddress, // list of receivers
-        subject: 'Calendar', // Subject line
-        text: 'hello', //req.body.emailBody, // plaintext body
-        html: '<h1>hello</h1>' //req.body.emailHtml // html body
-    };
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            return console.log(error);
-        }
-        console.log('Message sent: ' + info.response);
-        res.status(201).json(info);
-    });
-});
-
 
 
 
@@ -219,17 +188,6 @@ app.delete('/delete-custom-exercise/:deleteId', function (req, res) { //make bet
         });
     });
 });
-
-// ---------------USER ENDPOINTS-------------------------------------
-
-//app.get('/', (req, res) => {
-//    const cookie = req.cookies[USER_LOGGEDIN_COOKIE];
-//    console.log("=++++++++>>>>>app get cookie = ", cookie);
-//    if (cookie === "user-loggedin") {
-//        res.sendFile(__dirname + '/public/index.html');
-//
-//    }
-
 
 
 app.use('*', (req, res) => {
