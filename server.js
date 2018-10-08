@@ -13,7 +13,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use(express.static('public'));;
+app.use(express.static('public'));
 
 
 
@@ -55,7 +55,8 @@ function closeServer() {
         });
     }));
 }
-//
+
+// ---------------USER ENDPOINTS-------------------------------------
 app.post('/get-specific-routine', (req, res) => {
     let difficulty = req.body.difficulty;
     let goal = req.body.goal;
@@ -94,26 +95,27 @@ app.post('/get-specific-routine', (req, res) => {
 });
 
 //get exercises for user routine
-app.get('/get-specific-exercise/:exercise', function (req, res) {
+app.get("/get-specific-exercise/:exercise", function(req, res) {
     console.log(req.params.exercise);
-    exercises
-        .find({
-            'exercise': req.params.exercise
-        })
-        .then(function (item) {
-            console.log('exercise is:');
-            console.log(item);
-            res.json({
-                item
-            });
-        })
-        .catch(function (err) {
-            console.error(err);
-            res.status(500).json({
-                message: 'Internal server error'
-            });
+    async function getSpecfic() {
+      return await exercises.find({
+        exercise: req.params.exercise
+      });
+    }
+    async function run() {
+      const item = await getSpecfic();
+      if (!item) {
+        res.status(500).json({
+          message: "Internal server error"
         });
-});
+      } else {
+        res.json({
+          item
+        });
+      }
+    }
+    run();
+  });
 app.get('/get-custom-exercises/:days', function (req, res) {
     console.log(req.params.days);
     customexercises

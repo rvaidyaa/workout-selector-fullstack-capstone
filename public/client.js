@@ -1,7 +1,3 @@
-// define global functions variables and objects
-//global variable for user answer, email and email body text
-let emailBodyHtml = '';
-let emailBodyText = '';
 let quizSelection = [];
 
 //get the default non customized workout based on user selection
@@ -402,7 +398,8 @@ $(document).on('click', '.minus-exercise', function (event) {
     // get about deleting exercises
     console.log('deleteId is ');
     console.log(deleteId);
-    $.ajax({
+    async function getWorkout(){
+        await $.ajax({
             method: 'DELETE',
             url: '/delete-custom-exercise/' + deleteId,
         }).done(function (result) {
@@ -413,7 +410,8 @@ $(document).on('click', '.minus-exercise', function (event) {
             console.log(jqXHR);
             console.log(error);
             console.log(errorThrown);
-        });
+        });}
+
 
 });
 //print view
