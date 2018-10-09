@@ -350,20 +350,7 @@ $(document).on('submit', '.exercise-form', function (event) {
         console.log('parent is:');
         console.log(parent);
         parent.find('.exercise-form').hide();
-        var buildTheHtmlOutput = "";
-        //        buildTheHtmlOutput += '<div class="exercise">';
-        //        buildTheHtmlOutput += '<h4>';
-        //        buildTheHtmlOutput += name;
-        //        buildTheHtmlOutput += ':';
-        //        buildTheHtmlOutput += '</h4>';
-        //        buildTheHtmlOutput += '<h5 id="sets">Sets</h5>';
-        //        buildTheHtmlOutput += sets;
-        //        buildTheHtmlOutput += '<h5 id="reps">Reps</h5>';
-        //        buildTheHtmlOutput += reps;
-        //        buildTheHtmlOutput += '<br><button class="minus-exercise"><i class="fa fa-minus" aria-hidden="true"></i></button>';
-        //        buildTheHtmlOutput += '</div>';
-        //        parent.append(buildTheHtmlOutput);
-
+        
         addExercise(name, sets, reps, days);
     }
 });
@@ -398,8 +385,7 @@ $(document).on('click', '.minus-exercise', function (event) {
     // get about deleting exercises
     console.log('deleteId is ');
     console.log(deleteId);
-    async function getWorkout(){
-        await $.ajax({
+         $.ajax({
             method: 'DELETE',
             url: '/delete-custom-exercise/' + deleteId,
         }).done(function (result) {
@@ -410,7 +396,8 @@ $(document).on('click', '.minus-exercise', function (event) {
             console.log(jqXHR);
             console.log(error);
             console.log(errorThrown);
-        });}
+        });
+
 
 
 });
