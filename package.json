@@ -1,48 +1,48 @@
 {
-    "name": "workout-selector-fullstack-capstone",
-    "version": "1.0.0",
-    "description": "",
-    "main": "server.js",
-    "dependencies": {
-        "bcrypt": "^0.8.7",
-        "bcryptjs": "^2.3.0",
-        "body-parser": "^1.15.2",
-        "cookie-parser": "^1.4.3",
-        "cors": "^2.8.4",
-        "express": "^4.14.0",
-        "gmail-send": "^1.2.13",
-        "isomorphic-fetch": "^2.2.1",
-        "moment": "^2.18.1",
-        "mongodb": "^2.2.9",
-        "mongoose": "^4.5.10",
-        "node": "^10.11.0",
-        "nodemon": "^1.18.4",
-        "passport": "^0.3.2",
-        "passport-http": "^0.3.0",
-        "sendmail": "^1.2.0",
-        "unirest": "^0.5.1"
-    },
-    "devDependencies": {
-        "chai": "^3.5.0",
-        "chai-http": "^3.0.0",
-        "faker": "^3.1.0",
-        "mocha": "^3.2.0"
-    },
-    "engines": {
-        "node": "^10.11.0"
-    },
-    "scripts": {
-        "test": "mocha",
-        "start": "nodemon server.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/rvaidyaa/workout-selector-fullstack-capstone.git"
-    },
-    "author": "Meryem Yanar",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/rvaidyaa/workout-selector-fullstack-capstone/issues"
-    },
-    "homepage": "https://github.com/rvaidyaa/workout-selector-fullstack-capstone#readme"
+  "name": "workout-selector-fullstack-capstone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "express": "^4.14.0",
+    "gmail-send": "^1.2.13",
+    "isomorphic-fetch": "^2.2.1",
+    "moment": "^2.18.1",
+    "mongodb": "^2.2.9",
+    "mongoose": "^4.5.10",
+    "node": "^10.11.0",
+    "nodemon": "^1.18.4",
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0",
+    "sendmail": "^1.2.0",
+    "unirest": "^0.5.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "mocha": "^5.2.0",
+    "supertest": "^3.3.0"
+  },
+  "engines": {
+    "node": "^10.11.0"
+  },
+  "scripts": {
+    "test": "mocha --exit",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rvaidyaa/workout-selector-fullstack-capstone.git"
+  },
+  "author": "Meryem Yanar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rvaidyaa/workout-selector-fullstack-capstone/issues"
+  },
+  "homepage": "https://github.com/rvaidyaa/workout-selector-fullstack-capstone#readme"
 }
