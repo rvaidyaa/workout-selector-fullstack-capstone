@@ -40,7 +40,7 @@ router.post("/customexercises", async (req, res) => {
       reps: req.body.reps,
       days: req.body.days
     });
-    console.log(customExercises);
+    // console.log('custom exercise is',customExercises);
     if (!customExercises)
       return res.status(500).json({
         message: "internal server error"
