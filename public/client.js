@@ -30,7 +30,7 @@ const getWorkout = async quizSelection => {
       let exercisesArray = result.workoutsResults[0].exercises.split(",");
       let workoutName = result.workoutsResults[0].name;
       let workoutLink = result.workoutsResults[0].link;
-     
+      
       createTitle(workoutName, workoutLink);
 
       for (let i = 0; i < exercisesArray.length; i++) {
@@ -125,7 +125,7 @@ const getCustomExercises = days => {
     .done(function(result) {
       console.log(result);
       let buildTheHtmlOutput = "";
-      $.each(result.item, function(itemKey, itemValue) {
+      $.each(result.item, function(itemKey,  itemValue) {
         buildTheHtmlOutput += `<div class="exercise custom">
           <h4>${itemValue.name}</h4>
           <input type="hidden" class="exercise-id" value="${itemValue._id}"+>
